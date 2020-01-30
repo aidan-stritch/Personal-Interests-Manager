@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] =  'Personal_Interest_Manager'
 app.config["MONGO_URI"] =  'mongodb+srv://PIM_Admin:PIM_R00T@interests-cluster-9djrk.mongodb.net/Personal_Interest_Manager?retryWrites=true&w=majority'
-/*use environment variable instead of password in above app config*/
+
 
 mongo = PyMongo(app)
 
