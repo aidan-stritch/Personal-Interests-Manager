@@ -16,7 +16,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/manage_users')
 def manage_users():
-    return render_template('manage_users.html', user=mongo.db.users.find())
+    return render_template('manage_users.html', user=mongo.db.Users.find())
 
 
 if __name__ == '__main__':
