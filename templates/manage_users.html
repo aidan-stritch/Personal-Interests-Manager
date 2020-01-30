@@ -1,0 +1,20 @@
+<html>
+    <head>
+    </head>
+    <body>
+        {% for user in users %}
+            {{user.First_Name}}
+            {{user.Last_Name}}
+            {{user.Address_Line_1}}
+            {{user.Address_Line_2}}
+            {{user.Address_Line_3}}
+            {{user.Postcode}}
+            {{user.City}}
+            {{user.Phone}}
+            {{user.Email}}
+            {{user.Username}}
+            {{user.Password}}
+
+        {% endfor %}
+    </body>
+</html>
