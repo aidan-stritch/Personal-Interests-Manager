@@ -18,7 +18,6 @@ mongo = PyMongo(app)
 def manage_users():
     return render_template('manage_users.html', Users=mongo.db.Users.find())
     
-
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
