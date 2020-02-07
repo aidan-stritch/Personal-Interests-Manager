@@ -17,6 +17,11 @@ mongo = PyMongo(app)
 @app.route('/sign_up')
 def sign_up():
     return render_template('sign_up.html')
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    Users = mongo.db.Users
+    Users.insert_one(request.form.to_dict())
+    return redirect(url_for('manage_users'))
 
 @app.route('/manage_users')
 def manage_users():
