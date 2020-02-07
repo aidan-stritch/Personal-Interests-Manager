@@ -3,32 +3,42 @@
 	{% extends 'base.html'%}
 
 	{% block content%}
-	{% for user in Users %}
-	{{user.First_Name}}
-	{{user.Last_Name}}
-	{{user.Address_Line_1}}
-	{{user.Address_Line_2}}
-	{{user.Address_Line_3}}
-	{{user.Postcode}}
-	{{user.City}}
-	{{user.Phone}}
-	{{user.Email}}
-	{{user.Username}}
-	{{user.Password}}
-	{% endfor %}
-
+	
+    <!-- This area controls the materialize accordian 
+    display component to showcase the user information -->
 	<ul class="collapsible">
+        <!-- For each item the loop will create a new 
+        accordian list item and populate it with the data-->
+        {% for user in Users %}
 		<li>
-			<div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-			<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+			<div class="collapsible-header">
+            <i class="material-icons">filter_drama</i>
+            {{user.Last_Name}}, {{user.First_Name}}</div>
+
+			<div class="collapsible-body">
+            <span><h4>Address: </h4>
+            <ul>
+            <li>{{user.Address_Line_1}}</li>
+            <li>{{user.Address_Line_2}}</li>
+            <li>{{user.Address_Line_3}}</li>
+            <li>{{user.City}}</li>
+            <li>{{user.Postcode}}</li>
+            </ul>
+            </span>
+            <span><h4>Contact: </h4>
+            <ul>
+            <li>Phone: {{user.Phone}}</li>
+            <li>Email: {{user.Email}}</li>
+            </ul>
+            </span>
+            <span><h4>Login Details: </h4>
+            <ul>
+            <li>Username: {{user.Username}}</li>
+            <li>Password: {{user.Password}}</li>
+            </ul>
+            </span>
+            </div>
 		</li>
-		<li>
-			<div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-			<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-		</li>
-		<li>
-			<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-			<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-		</li>
+        {% endfor %}
 	</ul>
 	{% endblock %}
