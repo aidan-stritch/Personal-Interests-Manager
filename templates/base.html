@@ -3,12 +3,21 @@ contain references to the JavaScript & CSS files and the third-party libraries
 used accross the application.––>
 
 <html>
-<head></head>
+<head>
+    <!–– Links for Materialise styles ––>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
 <body>
     <h1>Test</h1>
+    <!–– This block will display the data from the route ––>
     {% block content%} 
-    
     {% endblock %}
+
+
+    <!–– This area is for the scripts that will be needed––>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </body>
 
 </html>
