@@ -1,8 +1,7 @@
-<html>
-    <head>
-    </head>
-    <body>
-        <h1>Manage Users Page</h1>
+<!––This child will inherit from the parent (base.html)-->
+
+{% extends 'base.html'%}
+{% block content%}
         {% for user in Users %}
             {{user.First_Name}}
             {{user.Last_Name}}
@@ -16,5 +15,4 @@
             {{user.Username}}
             {{user.Password}}
         {% endfor %}
-    </body>
-</html>
+{% endblock %}
