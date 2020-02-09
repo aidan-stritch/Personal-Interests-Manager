@@ -1,0 +1,46 @@
+<!-- This child will inherit from the parent (base.html) -->
+{% extends 'base.html'%}
+
+{% block content%}
+
+<h1>My Movies</h1>
+<a href="{{url_for('sign_up')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">local_movies</i>New Movie</a>
+<!-- This area controls the materialize accordian 
+display component to showcase the user information -->
+<ul class="collapsible">
+    <!-- For each item the loop will create a new 
+    accordian list item and populate it with the data-->
+    {% for film in Films %}
+    <li>
+        <div class="collapsible-header">
+            
+            <div class="col s9 accordian-title">
+                <i class="material-icons">keyboard_arrow_down</i>
+                <strong>{{film.Name}} - </strong> Released: {{film.Release_Date}}
+            </div>
+            <div class="col s3 accordian-btn">
+                
+                <a href="" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
+                <a href=""class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
+            </div>
+        </div>
+
+        <div class="collapsible-body">
+            <span>
+            <ul>
+            <li><strong>Name: </strong> {{film.Name}}</li>
+            <li><strong>Release Date: </strong> {{film.Release_Date}}</li>
+            <li><strong>Director: </strong> {{film.Director}}</li>
+            <li><strong>Rating: </strong> {{film.Rating}}%</li>
+            <li><strong>Description: </strong> {{film.Description}}</li>
+            <li><strong>Watched: </strong> {{film.Watched}}</li>
+            <li><strong>Genre: </strong> {{film.Genre}}</li>
+            </ul>
+
+            <img src="{{film.Image}}" alt="{{film.Name}}" class="result_image">
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

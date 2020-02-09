@@ -92,6 +92,18 @@ def delete_user(user_id):
     mongo.db.Users.remove({"_id": ObjectId(user_id)})
     return redirect(url_for('manage_users'))
 
+@app.route('/view_movies')
+def view_movies():
+    return render_template('my_movies.html', Films=mongo.db.Films.find())
+
+@app.route('/view_games')
+def view_games():
+    return render_template('my_games.html', Games=mongo.db.Games.find())
+
+@app.route('/view_tv')
+def view_tv():
+    return render_template('my_tv_shows.html', TV=mongo.db.TV.find())
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
