@@ -13,31 +13,38 @@ display component to showcase the user information -->
     {% for user in Users %}
     <li>
         <div class="collapsible-header">
-        <i class="material-icons">keyboard_arrow_down</i>
-        <strong>{{user.Last_Name}}, {{user.First_Name}} - </strong>{{user.Username}}</div>
+            <div class="col s3">
+                <i class="material-icons">keyboard_arrow_down</i>
+                <a href="{{url_for('edit_user', user_id=user._id)}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
+                <a class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
+            </div>
+            <div class="col s9 accordian-title">
+                <strong>{{user.Last_Name}}, {{user.First_Name}} - </strong> {{user.Username}}
+            </div>
+        </div>
 
         <div class="collapsible-body">
-        <span><h4>Address: </h4>
-        <ul>
-        <li>{{user.Address_Line_1}}</li>
-        <li>{{user.Address_Line_2}}</li>
-        <li>{{user.Address_Line_3}}</li>
-        <li>{{user.City}}</li>
-        <li>{{user.Postcode}}</li>
-        </ul>
-        </span>
-        <span><h4>Contact: </h4>
-        <ul>
-        <li>Phone: {{user.Phone}}</li>
-        <li>Email: {{user.Email}}</li>
-        </ul>
-        </span>
-        <span><h4>Login Details: </h4>
-        <ul>
-        <li>Username: {{user.Username}}</li>
-        <li>Password: {{user.Password}}</li>
-        </ul>
-        </span>
+            <span><h4>Address: </h4>
+            <ul>
+            <li>{{user.Address_Line_1}}</li>
+            <li>{{user.Address_Line_2}}</li>
+            <li>{{user.Address_Line_3}}</li>
+            <li>{{user.City}}</li>
+            <li>{{user.Postcode}}</li>
+            </ul>
+            </span>
+            <span><h4>Contact: </h4>
+            <ul>
+            <li>Phone: {{user.Phone}}</li>
+            <li>Email: {{user.Email}}</li>
+            </ul>
+            </span>
+            <span><h4>Login Details: </h4>
+            <ul>
+            <li>Username: {{user.Username}}</li>
+            <li>Password: {{user.Password}}</li>
+            </ul>
+            </span>
         </div>
     </li>
     {% endfor %}
