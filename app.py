@@ -15,6 +15,10 @@ mongo = PyMongo(app)
 """Creating our app routes"""
 @app.route('/')
 
+@app.route('/login')
+def login():
+    return render_template('index.html')
+
 @app.route('/user_profile')
 def user_profile():
     return render_template('user_profile.html')
@@ -26,6 +30,12 @@ def manage_users():
 @app.route('/sign_up')
 def sign_up():
     return render_template('sign_up.html')
+    
+"""this route checks the login fields against the users DB and if successful logs in the user 
+and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
+@app.route('/user_login')
+    def user_login():
+    return render_template('index.html')
 
 """this app route adds the new user from the form 
 to the MongoDB Users collection"""
