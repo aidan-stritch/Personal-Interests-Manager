@@ -30,12 +30,28 @@ def manage_users():
 @app.route('/sign_up')
 def sign_up():
     return render_template('sign_up.html')
-    
+
 """this route checks the login fields against the users DB and if successful logs in the user 
 and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
-@app.route('/user_login')
+
+"""
+@app.route('/user_login', methods=['POST'])
     def user_login():
+    if ()
     return render_template('index.html')
+
+
+
+'Username':request.form.get('Username'),
+        'Password':request.form.get('Password'),
+"""
+
+
+
+
+
+
+
 
 """this app route adds the new user from the form 
 to the MongoDB Users collection"""
@@ -75,8 +91,6 @@ def update_user(user_id):
 def delete_user(user_id):
     mongo.db.Users.remove({"_id": ObjectId(user_id)})
     return redirect(url_for('manage_users'))
-
-
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
