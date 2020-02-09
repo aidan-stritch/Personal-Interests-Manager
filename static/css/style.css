@@ -15,6 +15,16 @@ body{
     font-size: 20px;
 }
 
+.btn-large{
+    height: 125px;
+    width: 475px;
+    line-height: 125px;
+    font-size: 50px;
+    margin-left:25%;
+    text-align: left;
+    margin-bottom:25px;
+}
+
 .accordian-title{
     margin-top:5px;
     margin-left:5px

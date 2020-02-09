@@ -9,6 +9,27 @@
     </head>
 
 	<body>
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <!-- This will display the desktop nav bar-->
+                    <h1 class="brand-logo">Personal Interest Manager</h1>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="{{url_for('user_profile')}}">Home</a></li>
+                        <li><a href="{{url_for('manage_users')}}">Manage Users</a></li>
+                    </ul>
+                    <!-- This will display the additional links in a side nav 
+                        bar when in mobile view-->
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a href="{{url_for('user_profile')}}">Home</a></li>
+                        <li><a href="{{url_for('manage_users')}}">Manage Users</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+
         <!-- This block will display the data from the route -->
         <div class="container">
             {% block content%}
@@ -18,15 +39,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script>
+            """this area sets all items that should load when the page loads"""
             $(document).ready(function(){
                 $('.collapsible').collapsible();
+                $('select').material_select();
+                $(".button-collapse").sideNav();
             });
             """This is needed to correct an error with the date picker"""
             document.getElementById("matfix").addEventListener("click", function(e) {
                 e.stopPropagation();
             });
         </script>
-
 	</body>
-
 </html>

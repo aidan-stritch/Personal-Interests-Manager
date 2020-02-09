@@ -15,6 +15,10 @@ mongo = PyMongo(app)
 """Creating our app routes"""
 @app.route('/')
 
+@app.route('/user_profile')
+def user_profile():
+    return render_template('user_profile.html')
+
 @app.route('/manage_users')
 def manage_users():
     return render_template('manage_users.html', Users=mongo.db.Users.find())
