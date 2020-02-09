@@ -31,7 +31,7 @@ def add_user():
     Users.insert_one(request.form.to_dict())
     return redirect(url_for('manage_users'))
 
-"""this app route allows the user to edit a specific user"""   
+"""these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
 def edit_user(user_id):
     this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
@@ -55,6 +55,13 @@ def update_user(user_id):
         'Password':request.form.get('Password'),
     })
     return redirect(url_for('manage_users'))
+
+"""this app route allows the user to delete a specific user"""
+@app.route('/delete_user/<user_id>')
+def delete_user(user_id):
+    mongo.db.Users.remove({"_id": ObjectId(user_id)})
+    return redirect(url_for('manage_users'))
+
 
 
 if __name__ == '__main__':
