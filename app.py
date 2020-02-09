@@ -17,6 +17,9 @@ mongo = PyMongo(app)
 @app.route('/sign_up')
 def sign_up():
     return render_template('sign_up.html')
+
+"""this app route adds the new user from the form 
+to the MongoDB Users collection"""
 @app.route('/add_user', methods=['POST'])
 def add_user():
     Users = mongo.db.Users
