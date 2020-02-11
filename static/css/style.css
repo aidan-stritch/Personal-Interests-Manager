@@ -39,3 +39,8 @@ body{
     width: 250px;
     margin-left: 25%;
 }
+
+.form_switch{
+    position: relative;
+    margin: 5px 5px 5px 5px;
+}

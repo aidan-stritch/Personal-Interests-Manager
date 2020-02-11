@@ -44,11 +44,23 @@
                 $('.collapsible').collapsible();
                 $('select').material_select();
                 $(".button-collapse").sideNav();
+                $('.datepicker').datepicker();
+
+                """This is needed to allow the datepicker to display"""
+                $('.datepicker').pickadate({
+                    selectMonths: true, // Creates a dropdown to control month
+                    selectYears: 15, // Creates a dropdown of 15 years to control year,
+                    today: 'Today',
+                    clear: 'Clear',
+                    close: 'Ok',
+                    closeOnSelect: false // Close upon selecting a date,
+                });
+                """This is needed to correct an error with the date picker"""
+                document.getElementById("matfix").addEventListener("click", function(e) {
+                    e.stopPropagation();
+                });
             });
-            """This is needed to correct an error with the date picker"""
-            document.getElementById("matfix").addEventListener("click", function(e) {
-                e.stopPropagation();
-            });
+            
         </script>
 	</body>
 </html>
