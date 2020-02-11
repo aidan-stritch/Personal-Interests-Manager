@@ -61,7 +61,7 @@ def add_user():
     Users.insert_one(request.form.to_dict())
     return redirect(url_for('manage_users'))
 
-"""these app routes allows the user to edit a specific user"""   
+"""these app routes allows the user to edit a specific user and delete a specific user"""   
 @app.route('/edit_user/<user_id>')
 def edit_user(user_id):
     this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
@@ -91,6 +91,42 @@ def update_user(user_id):
 def delete_user(user_id):
     mongo.db.Users.remove({"_id": ObjectId(user_id)})
     return redirect(url_for('manage_users'))
+
+"""these app routes allows the user to edit a specific user and delete a specific user"""   
+
+@app.route('/edit_film/<film_id>')
+def edit_film(film_id):
+    this_film = mongo.db.Films.find_one({"_id": ObjectId(film_id)})
+    return render_template('edit_movie.html', film=this_film)
+
+@app.route('/update_film/<film_id>', methods=['POST'])
+def update_film(film_id):
+    film = mongo.db.Films
+    film.update( {'_id': ObjectId(film_id)},
+    {
+        'Name':request.form.get('Name'),
+        'Release_Date':request.form.get('Release_Date'),
+        'Director':request.form.get('Director'),
+        'Rating':request.form.get('Rating'),
+        'Description':request.form.get('Description'),
+        'Genre':request.form.get('Genre'),
+        'Watched':request.form.get('Watched'),
+        'Image':request.form.get('Image'),
+    })
+    return redirect(url_for('view_movies'))
+
+"""this app route allows the user to delete a specific user"""
+@app.route('/delete_film/<film_id>')
+def delete_film(film_id):
+    mongo.db.Films.remove({"_id": ObjectId(film_id)})
+    return redirect(url_for('view_movies'))
+
+
+
+
+
+
+
 
 @app.route('/view_movies')
 def view_movies():

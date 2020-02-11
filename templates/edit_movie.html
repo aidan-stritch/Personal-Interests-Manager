@@ -1,0 +1,82 @@
+<!-- This child will inherit from the parent (base.html) -->
+{% extends 'base.html'%}
+
+{% block content%}
+
+<h1>Edit Movie</h1>
+
+<!-- This area controls the materialize submit form 
+component to allow the user to update a movies details and submit -->
+<div class="row">
+	<form action="{{ url_for('update_film', film_id=film._id) }}" method="POST" class="col s12">
+		<div class="row">
+			<div class="input-field col s12">
+                <div class="row">
+                    <div class="col s6">
+                        <strong>Film Name: </strong>
+					    <input id="Name" name="Name" type="text" class="validate" value={{film.Name}}>  
+                    </div>
+                    <div class="col s6">
+                        <strong>Director: </strong>
+					    <input id="Director" name="Director" type="text" class="validate" value={{film.Director}}>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <strong>Description: </strong>
+				        <textarea id="Description" name="Description" class="materialize-textarea"> {{film.Description}} </textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <strong>Genre: </strong>
+				        <input id="Genre" name="Genre" type="text" class="validate" value={{film.Genre}}>
+                    </div>
+                    <div class="col s6">
+                        <strong>Rating (Current Rating - {{film.Rating}}/100): </strong>
+                        <p class="range-field">
+                        <input type="range" id="Rating" name="Rating" min="0" max="100" value="{{film.Rating}}" onchange="update_range_value(this.value);"/>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <strong>Image URL: </strong>
+					    <input id="Image" name="Image" type="text" class="validate" value={{film.Image}}>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 switch">
+                        <label>
+                        {% if film.Watched %}
+                                <input id="watched" name="watched" type="checkbox" checked>
+                            {% else %}
+                                <input id="watched" name="watched" type="checkbox">
+                            {% endif%}
+                        <span class="lever"></span>
+                        Watched
+                        </label>
+                    </div>
+                </div>
+				<div class="row">
+                    <div class="col s12 matfix">
+                        <strong>Release Date</strong>
+                        <input id="Release_Date" name="Release_Date" type="text" class="datepicker">
+                    </div>
+                </div>	
+			</div>
+			<button class="btn waves-effect waves-light" type="submit" name="action">Save Changes
+                <i class="material-icons right">done</i>
+            </button>
+		</div>
+	</form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        film_release = Date.parse('{{film.Release_Date}}');
+        $('#Release_Date').pickadate('picker').set('select', film_release, { format: 'dd/mm/yyyy' }).trigger('change');
+    });
+</script>
+{% endblock %}
