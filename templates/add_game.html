@@ -3,46 +3,46 @@
 
 {% block content%}
 
-<h1>Edit Game - {{game.Game_Name}}</h1>
+<h1>Add New Game</h1>
 
 <!-- This area controls the materialize submit form 
 component to allow the user to update a movies details and submit -->
 <div class="row">
-	<form action="{{ url_for('update_game', game_id=game._id) }}" method="POST" class="col s12">
+	<form action="{{ url_for('add_game') }}" method="POST" class="col s12">
 		<div class="row">
 			<div class="input-field col s12 resize_textarea">
 				<div class="row">
 					<div class="col s6">
 						<strong>Game Name: </strong>
-						<textarea id="Game_Name" name="Game_Name" type="text" class="materialize-textarea">{{game.Game_Name}}</textarea>
+						<textarea id="Game_Name" name="Game_Name" type="text" class="materialize-textarea"></textarea>
 					</div>
 					<div class="col s6">
 						<strong>Console: </strong>
-						<textarea id="Console" name="Console" type="text" class="materialize-textarea">{{game.Console}}</textarea>
+						<textarea id="Console" name="Console" type="text" class="materialize-textarea"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
 						<strong>Description: </strong>
-						<textarea id="Description" name="Description" class="materialize-textarea">{{game.Description}}</textarea>
+						<textarea id="Description" name="Description" class="materialize-textarea"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
-						<strong>Rating (Current Rating - {{game.Rating}}/10): </strong>
+						<strong>Rating (/10): </strong>
 						<p class="range-field">
-							<input type="range" id="Rating" name="Rating" min="0.0" max="10.0" step="0.5" value="{{game.Rating}}" onchange="update_range_value(this.value);"/>
+							<input type="range" id="Rating" name="Rating" min="0.0" max="10.0" step="0.5" value="0" onchange="update_range_value(this.value);"/>
                         </p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
 						<strong>Image URL: </strong>
-						<input id="Image" name="Image" type="text" class="validate" value={{game.Image}}>
+						<input id="Image" name="Image" type="text" class="validate" value="">
                     </div>
 				</div>
             </div>
-            <button class="btn waves-effect waves-light form_btn" type="submit" name="action">Save Changes
+            <button class="btn waves-effect waves-light form_btn" type="submit" name="action">Add Game
                 <i class="material-icons right">done</i>
             </button>
         </div>

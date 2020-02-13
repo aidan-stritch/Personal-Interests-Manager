@@ -3,69 +3,65 @@
 
 {% block content%}
 
-<h2>Edit Movie - {{film.Name}}</h2>
+<h2>Add New Movie</h2>
 
 <!-- This area controls the materialize submit form 
 component to allow the user to update a movies details and submit -->
 <div class="row">
-	<form action="{{ url_for('update_film', film_id=film._id) }}" method="POST" class="col s12">
+	<form action="{{ url_for('add_film') }}" method="POST" class="col s12">
 		<div class="row">
 			<div class="input-field col s12 resize_textarea">
 				<div class="row">
 					<div class="col s6">
 						<strong>Film Name: </strong>
-						<textarea id="Name" name="Name" type="text" class="materialize-textarea">{{film.Name}}</textarea>
+						<textarea id="Name" name="Name" type="text" class="materialize-textarea"></textarea>
 					</div>
 					<div class="col s6">
 						<strong>Director: </strong>
-						<textarea id="Director" name="Director" type="text" class="materialize-textarea">{{film.Director}}</textarea>
+						<textarea id="Director" name="Director" type="text" class="materialize-textarea"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
 						<strong>Description: </strong>
-						<textarea id="Description" name="Description" class="materialize-textarea">{{film.Description}}</textarea>
+						<textarea id="Description" name="Description" class="materialize-textarea"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s6">
 						<strong>Genre: </strong>
-						<textarea id="Genre" name="Genre" type="text" class="materialize-textarea">{{film.Genre}}</textarea>
+						<textarea id="Genre" name="Genre" type="text" class="materialize-textarea"></textarea>
 					</div>
 					<div class="col s6">
-						<strong>Rating (Current Rating - {{film.Rating}}/100): </strong>
+						<strong>Rating (/100): </strong>
 						<p class="range-field">
-							<input type="range" id="Rating" name="Rating" min="0" max="100" value="{{film.Rating}}" onchange="update_range_value(this.value);"/>
+							<input type="range" id="Rating" name="Rating" min="0" max="100" value="0" onchange="update_range_value(this.value);"/>
                         </p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
 						<strong>Image URL: </strong>
-						<input id="Image" name="Image" type="text" class="validate" value={{film.Image}}>
+						<input id="Image" name="Image" type="text" class="validate" value="">
                     </div>
 				</div>
                 <div class="row">
                     <div id="matfix" class="col s12 ">
                         <strong>Release Date</strong>
-                        <input id="Release_Date" name="Release_Date" type="text" class="datepicker" value="{{film.Release_Date}}">
+                        <input id="Release_Date" name="Release_Date" type="text" class="datepicker" value="">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 switch form_switch">
                         <label>
                         <strong>Watched</strong>
-                        {% if film.Watched %}
                                 <input id="Watched" name="Watched" type="checkbox" checked>
-                            {% else %}
-                                <input id="Watched" name="Watched" type="checkbox">
-                            {% endif%}
                         <span class="lever"></span>
                         </label>
                     </div>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light form_btn" type="submit" name="action">Save Changes
+            <button class="btn waves-effect waves-light form_btn" type="submit" name="action">Add Movie
                 <i class="material-icons right">done</i>
             </button>
         </div>
@@ -75,7 +71,7 @@ component to allow the user to update a movies details and submit -->
 
 <script type="text/javascript">
 	$(document).ready(function() {
-        film_release = Date.parse('{{film.Release_Date}}');
+        film_release = Date.parse('');
         $('#Release_Date').pickadate('picker').set('select', film_release, { format: 'dd/mm/yyyy' }).trigger('change');
     });
 </script>

@@ -31,6 +31,18 @@ def manage_users():
 def sign_up():
     return render_template('sign_up.html')
 
+@app.route('/new_film')
+def new_film():
+    return render_template('add_movie.html')
+
+@app.route('/new_tv_show')
+def new_tv_show():
+    return render_template('add_tv_show.html')
+
+@app.route('/new_game')
+def new_game():
+    return render_template('add_game.html')
+
 """this route checks the login fields against the users DB and if successful logs in the user 
 and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
 
@@ -61,7 +73,31 @@ def add_user():
     Users.insert_one(request.form.to_dict())
     return redirect(url_for('manage_users'))
 
-"""these app routes allows the user to edit a specific user and delete a specific user"""   
+"""this app route adds the new tv show from the form 
+to the MongoDB TV collection"""
+@app.route('/add_tv', methods=['POST'])
+def add_tv():
+    new_tv = mongo.db.TV
+    new_tv.insert_one(request.form.to_dict())
+    return redirect(url_for('view_tv'))
+
+"""this app route adds the new film from the form 
+to the MongoDB Films collection"""
+@app.route('/add_film', methods=['POST'])
+def add_film():
+    new_film = mongo.db.Films
+    new_film.insert_one(request.form.to_dict())
+    return redirect(url_for('view_movies'))
+
+"""this app route adds the new game from the form 
+to the MongoDB Games collection"""
+@app.route('/add_game', methods=['POST'])
+def add_game():
+    new_game = mongo.db.Games
+    new_game.insert_one(request.form.to_dict())
+    return redirect(url_for('view_games'))
+
+"""these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
 def edit_user(user_id):
     this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
@@ -92,8 +128,7 @@ def delete_user(user_id):
     mongo.db.Users.remove({"_id": ObjectId(user_id)})
     return redirect(url_for('manage_users'))
 
-"""these app routes allows the user to edit a specific user and delete a specific user"""   
-
+"""these app routes allows the user to edit a specific film"""   
 @app.route('/edit_film/<film_id>')
 def edit_film(film_id):
     this_film = mongo.db.Films.find_one({"_id": ObjectId(film_id)})
@@ -115,19 +150,65 @@ def update_film(film_id):
     })
     return redirect(url_for('view_movies'))
 
-"""this app route allows the user to delete a specific user"""
+"""this app route allows the user to delete a specific film"""
 @app.route('/delete_film/<film_id>')
 def delete_film(film_id):
     mongo.db.Films.remove({"_id": ObjectId(film_id)})
     return redirect(url_for('view_movies'))
 
+"""these app routes allows the user to edit a specific TV show"""   
+@app.route('/edit_tv/<tv_id>')
+def edit_tv(tv_id):
+    this_tv = mongo.db.TV.find_one({"_id": ObjectId(tv_id)})
+    return render_template('edit_tv_show.html', tv=this_tv)
 
+@app.route('/update_tv/<tv_id>', methods=['POST'])
+def update_tv(tv_id):
+    tv = mongo.db.TV
+    tv.update( {'_id': ObjectId(tv_id)},
+    {
+        'Name':request.form.get('Name'),
+        'Pilot_Date':request.form.get('Pilot_Date'),
+        'Director':request.form.get('Director'),
+        'Rating':request.form.get('Rating'),
+        'Description':request.form.get('Description'),
+        'Genre':request.form.get('Genre'),
+        'Image':request.form.get('Image'),
+    })
+    return redirect(url_for('view_tv'))
 
+"""this app route allows the user to delete a specific TV show"""
+@app.route('/delete_tv/<tv_id>')
+def delete_tv(tv_id):
+    mongo.db.TV.remove({"_id": ObjectId(tv_id)})
+    return redirect(url_for('view_tv'))
 
+"""these app routes allows the user to edit a specific game"""   
+@app.route('/edit_game/<game_id>')
+def edit_game(game_id):
+    this_game = mongo.db.Games.find_one({"_id": ObjectId(game_id)})
+    return render_template('edit_game.html', game=this_game)
 
+@app.route('/update_game/<game_id>', methods=['POST'])
+def update_game(game_id):
+    game = mongo.db.Games
+    game.update( {'_id': ObjectId(game_id)},
+    {
+        'Game_Name':request.form.get('Game_Name'),
+        'Console':request.form.get('Console'),
+        'Rating':request.form.get('Rating'),
+        'Description':request.form.get('Description'),
+        'Image':request.form.get('Image'),
+    })
+    return redirect(url_for('view_games'))
 
+"""this app route allows the user to delete a specific game"""
+@app.route('/delete_game/<game_id>')
+def delete_game(game_id):
+    mongo.db.Games.remove({"_id": ObjectId(game_id)})
+    return redirect(url_for('view_games'))
 
-
+"""these app routes allow the user to load all of the movies/games or tv shows and display them"""
 @app.route('/view_movies')
 def view_movies():
     return render_template('my_movies.html', Films=mongo.db.Films.find())

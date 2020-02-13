@@ -19,7 +19,7 @@ body{
     height: 125px;
     width: 475px;
     line-height: 125px;
-    font-size: 50px;
+    font-size: 35px;
     margin-left:25%;
     text-align: left;
     margin-bottom:25px;
@@ -43,4 +43,12 @@ body{
 .form_switch{
     position: relative;
     margin: 5px 5px 5px 5px;
+}
+
+.resize_field textarea{
+    height:5px;
+}
+
+.form_btn {
+    margin-top:50px;
 }

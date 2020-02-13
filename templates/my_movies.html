@@ -3,8 +3,8 @@
 
 {% block content%}
 
-<h1>My Movies</h1>
-<a href="{{url_for('sign_up')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">local_movies</i>New Movie</a>
+<h2>My Movies</h2>
+<a href="{{url_for('new_film')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">local_movies</i>New Movie</a>
 <!-- This area controls the materialize accordian 
 display component to showcase the user information -->
 <ul class="collapsible">
@@ -34,6 +34,7 @@ display component to showcase the user information -->
             <li><strong>Genre: </strong> {{film.Genre}}</li>
             </ul>
             <div class="switch">
+                <strong>Watched:</strong>
                 <label>
                 {% if film.Watched %}
                           <input disabled id="watched" name="watched" type="checkbox" checked>
@@ -41,7 +42,6 @@ display component to showcase the user information -->
                          <input disabled id="watched" name="watched" type="checkbox">
                     {% endif%}
                 <span class="lever"></span>
-                Watched
                 </label>
             </div>
             <img src="{{film.Image}}" alt="{{film.Name}}" class="result_image">

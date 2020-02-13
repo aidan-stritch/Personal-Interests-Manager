@@ -3,8 +3,8 @@
 
 {% block content%}
 
-<h1>My Games</h1>
-<a href="{{url_for('sign_up')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">local_movies</i>New Movie</a>
+<h2>My Games</h2>
+<a href="{{url_for('new_game')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">gamepad</i>New Game</a>
 <!-- This area controls the materialize accordian 
 display component to showcase the user information -->
 <ul class="collapsible">
@@ -16,12 +16,12 @@ display component to showcase the user information -->
             
             <div class="col s9 accordian-title">
                 <i class="material-icons">keyboard_arrow_down</i>
-                <strong>{{game.Game_Name}} - </strong> Released: {{game.Console}}
+                <strong>{{game.Game_Name}} - </strong> Console: {{game.Console}}
             </div>
             <div class="col s3 accordian-btn">
                 
-                <a href="" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
-                <a href=""class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
+                <a href="{{url_for('edit_game', game_id=game._id)}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
+                <a href="{{url_for('delete_game', game_id=game._id)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
             </div>
         </div>
 

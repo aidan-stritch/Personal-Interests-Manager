@@ -3,56 +3,56 @@
 
 {% block content%}
 
-<h2>Edit TV Show - {{tv.Name}}</h2>
+<h2>Add New TV Show</h2>
 
 <!-- This area controls the materialize submit form 
 component to allow the user to update a movies details and submit -->
 <div class="row">
-	<form action="{{ url_for('update_tv', tv_id=tv._id) }}" method="POST" class="col s12">
+	<form action="{{ url_for('add_tv') }}" method="POST" class="col s12">
 		<div class="row">
 			<div class="input-field col s12 resize_textarea">
 				<div class="row">
 					<div class="col s6">
 						<strong>TV Show Name: </strong>
-						<textarea id="Name" name="Name" type="text" class="materialize-textarea">{{tv.Name}}</textarea>
+						<textarea id="Name" name="Name" type="text" class="materialize-textarea"></textarea>
 					</div>
 					<div class="col s6">
 						<strong>Director: </strong>
-						<textarea id="Director" name="Director" type="text" class="materialize-textarea">{{tv.Director}}</textarea>
+						<textarea id="Director" name="Director" type="text" class="materialize-textarea"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
 						<strong>Description: </strong>
-						<textarea id="Description" name="Description" class="materialize-textarea">{{tv.Description}}</textarea>
+						<textarea id="Description" name="Description" class="materialize-textarea"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s6">
 						<strong>Genre: </strong>
-						<textarea id="Genre" name="Genre" type="text" class="materialize-textarea">{{tv.Genre}}</textarea>
+						<textarea id="Genre" name="Genre" type="text" class="materialize-textarea"></textarea>
 					</div>
 					<div class="col s6">
-						<strong>Rating (Current Rating - {{tv.Rating}}/100): </strong>
+						<strong>Rating (/100): </strong>
 						<p class="range-field">
-							<input type="range" id="Rating" name="Rating" min="0" max="100" value="{{tv.Rating}}" onchange="update_range_value(this.value);"/>
+							<input type="range" id="Rating" name="Rating" min="0" max="100" value="0" onchange="update_range_value(this.value);"/>
                         </p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
 						<strong>Image URL: </strong>
-						<input id="Image" name="Image" type="text" class="validate" value={{tv.Image}}>
+						<input id="Image" name="Image" type="text" class="validate" value="">
                     </div>
 				</div>
                 <div class="row">
                     <div id="matfix" class="col s12 ">
                         <strong>Pilot Date</strong>
-                        <input id="Pilot_Date" name="Pilot_Date" type="text" class="datepicker" value="{{tv.Pilot_Date}}">
+                        <input id="Pilot_Date" name="Pilot_Date" type="text" class="datepicker" value="">
                     </div>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light form_btn" type="submit" name="action">Save Changes
+            <button class="btn waves-effect waves-light form_btn" type="submit" name="action">Add TV Show
                 <i class="material-icons right">done</i>
             </button>
         </div>
@@ -62,7 +62,7 @@ component to allow the user to update a movies details and submit -->
 
 <script type="text/javascript">
 	$(document).ready(function() {
-        tv_release = Date.parse('{{tv.Pilot_Date}}');
+        tv_release = Date.parse('');
         $('#Pilot_Date').pickadate('picker').set('select', tv_release, { format: 'dd/mm/yyyy' }).trigger('change');
     });
 </script>
