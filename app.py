@@ -234,7 +234,6 @@ def view_episodes(tv_name):
     this_show = tv_name
     return render_template('my_episodes.html', Episodes=mongo.db.Episodes.find({"Show": tv_name}), show=this_show)
 
-
 """this app route adds the new episode from the form 
 to the MongoDB Episodes collection"""
 @app.route('/add_episode', methods=['POST'])
@@ -252,10 +251,28 @@ def delete_episode(episode_id, tv_name):
     return redirect(url_for('view_episodes', tv_name=tv_name))
 
 
+"""these app routes allows the user to edit a specific episode"""   
+@app.route('/edit_episode/<episode_id>')
+def edit_episode(episode_id):
+    this_episode = mongo.db.Episodes.find_one({"_id": ObjectId(episode_id)})
+    return render_template('edit_episode.html', episode=this_episode)
 
-
-
-
+@app.route('/update_episode/<episode_id>', methods=['POST'])
+def update_episode(episode_id):
+    episode = mongo.db.Episodes
+    episode.update( {'_id': ObjectId(episode_id)},
+    {
+        'Name':request.form.get('Name'),
+        'Season_Number':request.form.get('Season_Number'),
+        'Show':request.form.get('Show'),
+        'Air_Date':request.form.get('Air_Date'),
+        'Rating':request.form.get('Rating'),
+        'Description':request.form.get('Description'),
+        'Watched':request.form.get('Watched'),
+        'Episode_Number':request.form.get('Episode_Number'),
+    })
+    show_name = request.form.get('Show')
+    return redirect(url_for('view_episodes', tv_name=show_name))
 
 
 
