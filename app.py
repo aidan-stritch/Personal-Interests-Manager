@@ -43,6 +43,10 @@ def new_tv_show():
 def new_game():
     return render_template('add_game.html')
 
+@app.route('/new_episode/<tv_name>')
+def new_episode(tv_name):
+    return render_template('add_episode.html', show=tv_name)
+
 """this route checks the login fields against the users DB and if successful logs in the user 
 and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
 
@@ -206,7 +210,9 @@ def update_game(game_id):
 @app.route('/delete_game/<game_id>')
 def delete_game(game_id):
     mongo.db.Games.remove({"_id": ObjectId(game_id)})
-    return redirect(url_for('view_games'))
+    return redirect(url_for('view_episodes'))
+
+
 
 """these app routes allow the user to load all of the movies/games or tv shows and display them"""
 @app.route('/view_movies')
@@ -225,10 +231,36 @@ def view_tv():
 
 @app.route('/view_episodes/<tv_name>')
 def view_episodes(tv_name):
-    show_name=tv_name
-    return render_template('my_episodes.html', episode=mongo.db.Episodes.find({Show: show_name}))
+    this_show = tv_name
+    return render_template('my_episodes.html', Episodes=mongo.db.Episodes.find({"Show": tv_name}), show=this_show)
 
 
+"""this app route adds the new episode from the form 
+to the MongoDB Episodes collection"""
+@app.route('/add_episode', methods=['POST'])
+def add_episode():
+    new_episode = mongo.db.Episodes
+    new_episode.insert_one(request.form.to_dict())
+    show_name = request.form.get('Show')
+    return redirect(url_for('view_episodes', tv_name=show_name))
+
+"""this app route allows the user to delete a specific episode"""
+@app.route('/delete_episode/<episode_id>/<tv_name>')
+def delete_episode(episode_id, tv_name):
+    mongo.db.Episodes.remove({"_id": ObjectId(episode_id)})
+
+    return redirect(url_for('view_episodes', tv_name=tv_name))
+
+
+
+
+
+
+
+
+
+
+    
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

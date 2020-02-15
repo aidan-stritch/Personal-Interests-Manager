@@ -13,19 +13,16 @@ display component to showcase the user information -->
     {% for tv in TV %}
     <li>
         <div class="collapsible-header">
-            
             <div class="col s9 accordian-title">
                 <i class="material-icons">keyboard_arrow_down</i>
                 <strong>{{tv.Name}} - </strong> Pilot Date: {{tv.Pilot_Date}}
             </div>
-            <div class="col s3 accordian-btn">
-                
+            <div class="col s3 accordian-btn"> 
                 <a href="{{url_for('edit_tv', tv_id=tv._id)}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
                 <a href="{{url_for('delete_tv', tv_id=tv._id)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
-                <a href="{{url_for('view_episodes', tv_name=tv.Name)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">view</i>Episodes</a>
+                <a href="{{url_for('view_episodes', tv_name=tv.Name)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">dvr</i>Episodes</a>
             </div>
         </div>
-
         <div class="collapsible-body">
             <span>
             <ul>
