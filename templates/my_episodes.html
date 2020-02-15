@@ -1,0 +1,44 @@
+<!-- This child will inherit from the parent (base.html) -->
+{% extends 'base.html'%}
+
+{% block content%}
+
+<h2>{{episode.Show}} Episode List</h2>
+<a href="{{url_for('')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">gamepad</i>New Game</a>
+<!-- This area controls the materialize accordian 
+display component to showcase the user information -->
+<ul class="collapsible">
+    <!-- For each item the loop will create a new 
+    accordian list item and populate it with the data-->
+    {% for episode in Episodes %}
+    <li>
+        <div class="collapsible-header">
+            
+            <div class="col s9 accordian-title">
+                <i class="material-icons">keyboard_arrow_down</i>
+                <strong>{{episode.Name}} - </strong> Episode: {{episode.Episode_Number}}
+            </div>
+            <div class="col s3 accordian-btn">
+                <a href="" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
+                <a href=""class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
+            </div>
+        </div>
+
+        <div class="collapsible-body">
+            <span>
+            <ul>
+            <li><strong>Name: </strong> {{episode.Name}}</li>
+            <li><strong>Show: </strong> {{episode.Show}}/10</li>
+            <li><strong>Season: </strong> {{episode.Season_Number}}</li>
+            <li><strong>Episode Number: </strong> {{episode.Episode_Number}}</li>
+            <li><strong>Air Date: </strong> {{episode.Air_Date}}</li>
+            <li><strong>Rating: </strong> {{episode.Rating}}</li>
+            <li><strong>Descripion: </strong> {{episode.Description}}</li>
+            <li><strong>Watched: </strong> {{episode.Watched}}</li>
+            </ul>
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

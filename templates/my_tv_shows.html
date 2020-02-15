@@ -22,6 +22,7 @@ display component to showcase the user information -->
                 
                 <a href="{{url_for('edit_tv', tv_id=tv._id)}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
                 <a href="{{url_for('delete_tv', tv_id=tv._id)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
+                <a href="{{url_for('view_episodes', tv_name=tv.Name)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">view</i>Episodes</a>
             </div>
         </div>
 

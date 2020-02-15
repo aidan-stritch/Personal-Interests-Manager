@@ -221,6 +221,15 @@ def view_games():
 def view_tv():
     return render_template('my_tv_shows.html', TV=mongo.db.TV.find())
 
+"""these app routes allow the user to load the episodes and quests linked to the specific shows or games and display them"""
+
+@app.route('/view_episodes/<tv_name>')
+def view_episodes(tv_name):
+    show_name=tv_name
+    return render_template('my_episodes.html', episode=mongo.db.Episodes.find({Show: show_name}))
+
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
