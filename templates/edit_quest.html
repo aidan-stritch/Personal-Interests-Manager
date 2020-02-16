@@ -1,0 +1,71 @@
+<!-- This child will inherit from the parent (base.html) -->
+{% extends 'base.html'%}
+
+{% block content%}
+
+<h2>Edit Quest</h2>
+
+<!-- This area controls the materialize submit form 
+component to allow the user to update a movies details and submit -->
+<div class="row">
+	<form action="{{ url_for('update_quest', quest_id=quest._id) }}" method="POST" class="col s12">
+		<div class="row">
+			<div class="input-field col s12 resize_textarea">
+				<div class="row">
+					<div class="col s6">
+						<strong>Game Name: </strong>
+						<textarea readonly id="Game" name="Game" type="text" class="materialize-textarea">{{quest.Game}}</textarea>
+					</div>
+					<div class="col s6">
+						<strong>Quest Name: </strong>
+						<textarea id="Quest_Name" name="Quest_Name" type="text" class="materialize-textarea">{{quest.Quest_Name}}</textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<strong>Description: </strong>
+						<textarea id="Description" name="Description" class="materialize-textarea">{{quest.Description}}</textarea>
+					</div>
+				</div>
+                <div class="row">
+					<div class="col s12">
+						<strong>Recommended Level (Current Level:{{quest.Rec_Level}}/50): </strong>
+						<p class="range-field">
+							<input type="range" id="Rec_Level" name="Rec_Level" min="1" max="50" value="{{quest.Rec_Level}}" onchange="update_range_value(this.value);"/>
+                        </p>
+					</div>
+				</div>
+            </div>
+            <div class="row">
+                <div class="col s12 switch form_switch">
+                    <label>
+                    <strong>Active</strong>
+                            {% if quest.Active_Quest %}
+                                <input id="Active_Quest" name="Active_Quest" type="checkbox" checked>
+                            {% else %}
+                                <input id="Active_Quest" name="Active_Quest" type="checkbox">
+                            {% endif%}
+                    <span class="lever"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 switch form_switch">
+                    <label>
+                    <strong>Completed</strong>
+                            {% if quest.Completed %}
+                                <input id="Completed" name="Completed" type="checkbox" checked>
+                            {% else %}
+                                <input id="Completed" name="Completed" type="checkbox">
+                            {% endif%}
+                    <span class="lever"></span>
+                    </label>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light form_btn" type="submit" name="action">Save Changes 
+                <i class="material-icons right">done</i>
+            </button>
+        </div>
+	</form>
+</div>
+{% endblock %}

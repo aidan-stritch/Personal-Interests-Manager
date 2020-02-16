@@ -47,6 +47,10 @@ def new_game():
 def new_episode(tv_name):
     return render_template('add_episode.html', show=tv_name)
 
+@app.route('/new_quest/<game_name>')
+def new_quest(game_name):
+    return render_template('add_quest.html', game=game_name)
+
 """this route checks the login fields against the users DB and if successful logs in the user 
 and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
 
@@ -234,6 +238,11 @@ def view_episodes(tv_name):
     this_show = tv_name
     return render_template('my_episodes.html', Episodes=mongo.db.Episodes.find({"Show": tv_name}), show=this_show)
 
+@app.route('/view_quests/<game_name>')
+def view_quests(game_name):
+    this_game = game_name
+    return render_template('my_quests.html', Quests=mongo.db.Quests.find({"Game": game_name}), game=this_game)
+
 """this app route adds the new episode from the form 
 to the MongoDB Episodes collection"""
 @app.route('/add_episode', methods=['POST'])
@@ -243,13 +252,26 @@ def add_episode():
     show_name = request.form.get('Show')
     return redirect(url_for('view_episodes', tv_name=show_name))
 
+"""this app route adds the new quest from the form 
+to the MongoDB Quests collection"""
+@app.route('/add_quest', methods=['POST'])
+def add_quest():
+    new_quest = mongo.db.Quests
+    new_quest.insert_one(request.form.to_dict())
+    game_name = request.form.get('Game')
+    return redirect(url_for('view_quests', game_name=game_name))
+
 """this app route allows the user to delete a specific episode"""
 @app.route('/delete_episode/<episode_id>/<tv_name>')
 def delete_episode(episode_id, tv_name):
     mongo.db.Episodes.remove({"_id": ObjectId(episode_id)})
-
     return redirect(url_for('view_episodes', tv_name=tv_name))
 
+"""this app route allows the user to delete a specific quest"""
+@app.route('/delete_quest/<quest_id>/<game_name>')
+def delete_quest(quest_id, game_name):
+    mongo.db.Quests.remove({"_id": ObjectId(quest_id)})
+    return redirect(url_for('view_quests', game_name=game_name))
 
 """these app routes allows the user to edit a specific episode"""   
 @app.route('/edit_episode/<episode_id>')
@@ -274,7 +296,26 @@ def update_episode(episode_id):
     show_name = request.form.get('Show')
     return redirect(url_for('view_episodes', tv_name=show_name))
 
+"""these app routes allows the user to edit a specific quest"""   
+@app.route('/edit_quest/<quest_id>')
+def edit_quest(quest_id):
+    this_quest = mongo.db.Quests.find_one({"_id": ObjectId(quest_id)})
+    return render_template('edit_quest.html', quest=this_quest)
 
+@app.route('/update_quest/<quest_id>', methods=['POST'])
+def update_quest(quest_id):
+    quest = mongo.db.Quests
+    quest.update( {'_id': ObjectId(quest_id)},
+    {
+        'Game':request.form.get('Game'),
+        'Quest_Name':request.form.get('Quest_Name'),
+        'Description':request.form.get('Description'),
+        'Active_Quest':request.form.get('Active_Quest'),
+        'Completed':request.form.get('Completed'),
+        'Rec_Level':request.form.get('Rec_Level'),
+    })
+    game_name = request.form.get('Game')
+    return redirect(url_for('view_quests', game_name=game_name))
 
 
     

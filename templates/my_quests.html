@@ -1,0 +1,63 @@
+<!-- This child will inherit from the parent (base.html) -->
+{% extends 'base.html'%}
+
+{% block content%}
+
+<h2>{{game}} - Quest List</h2>
+<a href="{{url_for('new_quest', game_name=game)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">menu_book</i>Add Quest</a>
+
+<!-- This area controls the materialize accordian 
+display component to showcase the user information -->
+<ul class="collapsible">
+    <!-- For each item the loop will create a new 
+    accordian list item and populate it with the data-->
+    {% for quest in Quests %}
+    <li>
+        <div class="collapsible-header">
+            
+            <div class="col s9 accordian-title">
+                <i class="material-icons">keyboard_arrow_down</i>
+                <strong>{{quest.Quest_Name}}- </strong> Recommended Player Level: {{quest.Rec_Level}}
+            </div>
+            <div class="col s3 accordian-btn">
+                <a href="{{url_for('edit_quest', quest_id=quest._id)}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
+                <a href="{{url_for('delete_quest', quest_id=quest._id, game_name=quest.Game)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
+            </div>
+        </div>
+
+        <div class="collapsible-body">
+            <span>
+            <ul>
+            <li><strong>Game: </strong> {{quest.Game}}</li>
+            <li><strong>Quest Name: </strong> {{quest.Quest_Name}}</li>
+            <li><strong>Recommended Level: </strong> {{quest.Rec_Level}}</li>
+            <li><strong>Descripion: </strong> {{quest.Description}}</li>
+            <div class="switch">
+                <strong>Active:</strong>
+                <label>
+                {% if quest.Active_Quest %}
+                          <input disabled id="Active_Quest" name="Active_Quest" type="checkbox" checked>
+                    {% else %}
+                         <input disabled id="Active_Quest" name="Active_Quest" type="checkbox">
+                    {% endif%}
+                <span class="lever"></span>
+                </label>
+            </div>
+            <div class="switch">
+                <strong>Completed:</strong>
+                <label>
+                {% if quest.Completed %}
+                          <input disabled id="Completed" name="Completed" type="checkbox" checked>
+                    {% else %}
+                         <input disabled id="Completed" name="Completed" type="checkbox">
+                    {% endif%}
+                <span class="lever"></span>
+                </label>
+            </div>
+            </ul>
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
