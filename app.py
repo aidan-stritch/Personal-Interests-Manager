@@ -62,17 +62,20 @@ def sign_up():
     return render_template('sign_up.html')
 
 """this app route adds the new user from the form 
-to the MongoDB Users collection"""
+to the MongoDB Users collection and using bcrypt 
+it hashes out the password for security"""
 @app.route('/add_user', methods=['POST'])
 def add_user():
     Users = mongo.db.Users
     old_password = b"request.form.get('Password')"
     Password = bcrypt.hashpw(old_password, bcrypt.gensalt())
-    Users.insert_one(request.form.to_dict(Password))
+    fields = request.form.to_dict()
+    fields['Password'] = Password
+    Users.insert_one(fields)
     return redirect(url_for('manage_users'))
 
 
- 
+    
 
 """these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
