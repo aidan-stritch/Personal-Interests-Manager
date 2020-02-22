@@ -1,5 +1,6 @@
 """This area imports the neccessary libraries for this Python file"""
 import os
+import bcrypt
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -14,7 +15,6 @@ mongo = PyMongo(app)
 
 @app.route('/')
 
-"""Creates our app route to the first page for a user to login"""
 @app.route('/login')
 def login():
     return render_template('index.html')
@@ -24,7 +24,7 @@ def login():
 
 
 
-"""this route checks the login fields against the users DB and if successful logs in the user 
+"""this route checks the login fields against the Users DB collection and if successful logs in the user 
 and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
 
 """
@@ -66,9 +66,13 @@ to the MongoDB Users collection"""
 @app.route('/add_user', methods=['POST'])
 def add_user():
     Users = mongo.db.Users
-    Password = bcrypt.hashpw(combo_password, salt)
-    Users.insert_one(request.form.to_dict())
+    old_password = b"request.form.get('Password')"
+    Password = bcrypt.hashpw(old_password, bcrypt.gensalt())
+    Users.insert_one(request.form.to_dict(Password))
     return redirect(url_for('manage_users'))
+
+
+ 
 
 """these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
