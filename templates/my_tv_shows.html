@@ -34,7 +34,13 @@ display component to showcase the user information -->
             <li><strong>Genre: </strong> {{tv.Genre}}</li>
             </ul>
 
-            <img src="{{tv.Image}}" alt="{{tv.Name}}" class="result_image">
+            {% if tv.Image == "" %}
+                <h5><strong>No Image Available</strong></h5>
+                To add an image for this item, please click on the "Edit" button above and add a link to the image.
+            {% else %}
+                <img src="{{tv.Image}}" alt="{{tv.Name}}" class="result_image">
+            {% endif%}
+
             </span>
         </div>
     </li>

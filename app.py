@@ -78,6 +78,7 @@ to the MongoDB Users collection"""
 @app.route('/add_user', methods=['POST'])
 def add_user():
     Users = mongo.db.Users
+    Password = bcrypt.hashpw(combo_password, salt)
     Users.insert_one(request.form.to_dict())
     return redirect(url_for('manage_users'))
 
@@ -257,7 +258,9 @@ to the MongoDB Quests collection"""
 @app.route('/add_quest', methods=['POST'])
 def add_quest():
     new_quest = mongo.db.Quests
-    new_quest.insert_one(request.form.to_dict())
+    quest = request.form.to_dict()
+    print(quest)
+    new_quest.insert_one(quest) 
     game_name = request.form.get('Game')
     return redirect(url_for('view_quests', game_name=game_name))
 

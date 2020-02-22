@@ -35,7 +35,12 @@ display component to showcase the user information -->
             <li><strong>Console: </strong> {{game.Console}}</li>
             </ul>
 
-            <img src="{{game.Image}}" alt="{{game.Game_Name}}" class="result_image">
+            {% if game.Image == "" %}
+                <h5><strong>No Image Available</strong></h5>
+                To add an image for this item, please click on the "Edit" button above and add a link to the image.
+            {% else %}
+                <img src="{{game.Image}}" alt="{{game.Game_Name}}" class="result_image">
+            {% endif%}
             </span>
         </div>
     </li>
