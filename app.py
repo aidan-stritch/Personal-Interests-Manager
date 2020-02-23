@@ -80,9 +80,19 @@ def edit_user(user_id):
     this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
     return render_template('edit_user.html', user=this_user)
 
-@app.route('/update_user/<user_id>', methods=['POST'])
-def update_user(user_id):
+@app.route('/update_user/<user_id>/<old_pwd>', methods=['POST'])
+def update_user(user_id, old_pwd):
     user = mongo.db.Users
+    """for security, we must encrypt the password again using bcrypt for 
+    when the users information is updated as we decrypted the password to 
+    display it""" 
+    form_password = b"request.form.get('Password')"
+
+    if form_password == "":
+        new_pass = old_pwd  
+    else:
+        new_pass = bcrypt.hashpw(form_password, bcrypt.gensalt())
+
     user.update( {'_id': ObjectId(user_id)},
     {
         'First_Name':request.form.get('First_Name'),
@@ -95,7 +105,7 @@ def update_user(user_id):
         'Phone':request.form.get('Phone'),
         'Email':request.form.get('Email'),
         'Username':request.form.get('Username'),
-        'Password':request.form.get('Password'),
+        'Password':new_pass,
     })
     return redirect(url_for('manage_users'))
 
