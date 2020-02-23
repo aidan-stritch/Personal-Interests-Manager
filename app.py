@@ -68,14 +68,11 @@ it hashes out the password for security"""
 def add_user():
     Users = mongo.db.Users
     old_password = b"request.form.get('Password')"
-    Password = bcrypt.hashpw(old_password, bcrypt.gensalt())
+    hash_pass = bcrypt.hashpw(old_password, bcrypt.gensalt())
     fields = request.form.to_dict()
-    fields['Password'] = Password
+    fields['Password'] = hash_pass
     Users.insert_one(fields)
     return redirect(url_for('manage_users'))
-
-
-    
 
 """these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
