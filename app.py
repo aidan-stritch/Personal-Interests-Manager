@@ -100,15 +100,14 @@ def update_user(user_id, old_pwd):
     is left blank (i.e. not changed) we will pass back the original bcrypted 
     password""" 
     form_password = b"request.form.get('Password')"
-    exist_pwd = old_pwd
 
     if form_password == "":
-        new_pass = exist_pwd
+        new_pass = old_pwd
     else:
         new_pass = bcrypt.hashpw(form_password, bcrypt.gensalt())
 
     print("this is the old password")
-    print(exist_pwd)
+    print(old_pwd)
     print("this is the new password")
     print(new_pass)
     user.update( {'_id': ObjectId(user_id)},
