@@ -7,15 +7,15 @@
 <h5>Please enter your login credentials</h5>
 
 <div class="row">
-    <form action="" method="POST"  class="col s12">
+    <form action="{{ url_for('user_login') }}" method="POST"  class="col s12">
       <div class="row">
         <div class="input-field col s12">
-            <input id="user_username" type="text">
-            <label for="user_username">Username</label>
+            <textarea id="user_username" name="user_username" type="text" class="materialize-textarea" value=""></textarea>
+            <label for="icon_prefix">Username</label>
         </div>
         <div class="input-field col s12">
-            <input id="user_password" type="text">
-            <label for="user_password">Password</label>
+            <textarea id="user_password" name="user_password" type="text" class="materialize-textarea" value=""></textarea>
+            <label for="icon_prefix">Password</label>
         </div>
         <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
         <a href="{{url_for('sign_up')}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">person_add</i>Sign Up</a>      

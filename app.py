@@ -4,6 +4,7 @@ import bcrypt
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask import flash
 
 """Creating an instance of a Flask app and linking it to the MongoDB"""
 app = Flask(__name__)
@@ -27,15 +28,26 @@ def login():
 """this route checks the login fields against the Users DB collection and if successful logs in the user 
 and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
 
-"""
-@app.route('/user_login', methods=['POST'])
-    def user_login():
-    if ()
-    return render_template('index.html')
 
-'Username':request.form.get('Username'),
-        'Password':request.form.get('Password'),
-"""
+@app.route('/user_login', methods=['POST'])
+def user_login():
+    unhashed_pwd = b"request.form.get('user_password')"
+    this_user = request.form.get('user_username')
+    
+    if mongo.db.Users.find({"Username": this_user}):
+        """this query will set the value of 'hashed_pwd' to be the value 
+        in the MongoDB User password field for the username that matches 'this_user'"""
+        hashed_pwd = mongo.db.Users.find({"Username": this_user}, {"Password": 1, "_id":0 })
+        print(hashed_pwd)
+        if bcrypt.checkpw(unhashed_pwd, hashed_pwd):
+            return render_template('user_profile.html')
+        else:
+            flash("Password does not match our records")
+            return render_template('index.html')
+    else:
+        flash("User does not exist in our records")
+        return render_template('index.html')
+
 
 
 
@@ -84,15 +96,21 @@ def edit_user(user_id):
 def update_user(user_id, old_pwd):
     user = mongo.db.Users
     """for security, we must encrypt the password again using bcrypt for 
-    when the users information is updated as we decrypted the password to 
-    display it""" 
+    when the users information is updated to a new password and if the field
+    is left blank (i.e. not changed) we will pass back the original bcrypted 
+    password""" 
     form_password = b"request.form.get('Password')"
+    exist_pwd = old_pwd
 
     if form_password == "":
-        new_pass = old_pwd  
+        new_pass = exist_pwd
     else:
         new_pass = bcrypt.hashpw(form_password, bcrypt.gensalt())
 
+    print("this is the old password")
+    print(exist_pwd)
+    print("this is the new password")
+    print(new_pass)
     user.update( {'_id': ObjectId(user_id)},
     {
         'First_Name':request.form.get('First_Name'),
