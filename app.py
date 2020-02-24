@@ -31,23 +31,18 @@ and redirects to user profile.. if unsuccessful shows message and returns user t
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
-    unhashed_pwd = b"request.form.get('user_password')"
+    unhashed_pwd = request.form.get('user_password')
     this_user = request.form.get('user_username')
-    
     if mongo.db.Users.find({"Username": this_user}):
-        """this query will set the value of 'hashed_pwd' to be the value 
-        in the MongoDB User password field for the username that matches 'this_user'"""
-        hashed_pwd = mongo.db.Users.find({"Username": this_user}, {"Password": 1, "_id":0 })
-        print(hashed_pwd)
-        if bcrypt.checkpw(unhashed_pwd, hashed_pwd):
-            return render_template('user_profile.html')
+        user = mongo.db.Users.find_one({"Username": this_user})
+        if bcrypt.checkpw(unhashed_pwd, user["Password"]):
+            return redirect('user_profile.html')
         else:
             flash("Password does not match our records")
             return render_template('index.html')
     else:
         flash("User does not exist in our records")
         return render_template('index.html')
-
 
 
 
@@ -79,8 +74,8 @@ it hashes out the password for security"""
 @app.route('/add_user', methods=['POST'])
 def add_user():
     Users = mongo.db.Users
-    old_password = b"request.form.get('Password')"
-    hash_pass = bcrypt.hashpw(old_password, bcrypt.gensalt())
+    old_password = request.form.get('Password')
+    hash_pass = bcrypt.hashpw(old_password.encode("utf-8"), bcrypt.gensalt())
     fields = request.form.to_dict()
     fields['Password'] = hash_pass
     Users.insert_one(fields)
@@ -92,24 +87,23 @@ def edit_user(user_id):
     this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
     return render_template('edit_user.html', user=this_user)
 
-@app.route('/update_user/<user_id>/<old_pwd>', methods=['POST'])
-def update_user(user_id, old_pwd):
+@app.route('/update_user/<user_id>', methods=['POST'])
+def update_user(user_id):
     user = mongo.db.Users
     """for security, we must encrypt the password again using bcrypt for 
     when the users information is updated to a new password and if the field
     is left blank (i.e. not changed) we will pass back the original bcrypted 
     password""" 
-    form_password = b"request.form.get('Password')"
+    form_password = request.form.get('Password')
 
     if form_password == "":
-        new_pass = old_pwd
+        this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
+        new_pass = this_user["Password"]
     else:
         new_pass = bcrypt.hashpw(form_password, bcrypt.gensalt())
-
-    print("this is the old password")
-    print(old_pwd)
-    print("this is the new password")
+    
     print(new_pass)
+
     user.update( {'_id': ObjectId(user_id)},
     {
         'First_Name':request.form.get('First_Name'),
@@ -124,6 +118,9 @@ def update_user(user_id, old_pwd):
         'Username':request.form.get('Username'),
         'Password':new_pass,
     })
+
+    
+
     return redirect(url_for('manage_users'))
 
 """this app route allows the user to delete a specific user"""
