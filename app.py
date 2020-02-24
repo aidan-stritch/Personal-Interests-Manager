@@ -20,14 +20,8 @@ mongo = PyMongo(app)
 def login():
     return render_template('index.html')
 
-
-
-
-
-
 """this route checks the login fields against the Users DB collection and if successful logs in the user 
 and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
-
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
@@ -43,18 +37,6 @@ def user_login():
     else:
         flash("User does not exist in our records")
         return render_template('index.html')
-
-
-
-
-
-
-
-
-
-
-
-
 
 """these app routes handle the user's pages and functionality"""
 

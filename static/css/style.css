@@ -16,13 +16,19 @@ body{
 }
 
 .btn-large{
-    height: 125px;
-    width: 475px;
-    line-height: 125px;
-    font-size: 35px;
-    margin-left:25%;
+    height: 95px;
+    width: 400px;
+    line-height: 105px;
+    font-size: 25px;
+    margin-left:20%;
     text-align: left;
     margin-bottom:25px;
+    margin-top: 25px;
+
+}
+
+.btn-large i{
+    font-size: 50px;
 }
 
 .accordian-btn{
@@ -51,4 +57,8 @@ body{
 
 .form_btn {
     margin-top:50px;
+}
+
+.page-heading h2{
+    font-size:45px;
 }
