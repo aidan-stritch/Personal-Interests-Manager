@@ -1,19 +1,29 @@
 """This area imports the neccessary libraries for this Python file"""
 import os
 import bcrypt
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask import flash
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager, UserMixin
 
 """Creating an instance of a Flask app and linking it to the MongoDB"""
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'Interests_DB'
 app.config["MONGO_URI"] = 'mongodb+srv://PIM_Admin:PIM_R00T@interests-cluster-9djrk.mongodb.net/Interests_DB?retryWrites=true&w=majority'
 
-"""Creates an instance of PyMongo with the app inside and sets the default app route"""
+"""Creates an instance of PyMongo with the app inside """
 mongo = PyMongo(app)
+"""Creates an instance of Bcrypt with the app inside """
+bcrypt = Bcrypt(app)
+"""Creates an instance of LoginManager with the app inside """
+login_manager = LoginManager(app)
 
+@login_manager.user_loader
+def current_user(user_id):
+    return mongo.db.Users.find_one({"_id": ObjectId(user_id)})
+
+"""sets the default app route"""
 @app.route('/')
 
 @app.route('/login')
@@ -29,10 +39,11 @@ def user_login():
     this_user = request.form.get('user_username')
     if mongo.db.Users.find({"Username": this_user}):
         user = mongo.db.Users.find_one({"Username": this_user})
-        if bcrypt.checkpw(unhashed_pwd, user["Password"]):
-            return redirect('user_profile.html')
+        if bcrypt.check_password_hash(user["Password"], unhashed_pwd):
+
+            return redirect(url_for('user_profile'))
         else:
-            flash("Password does not match our records")
+            """flash("Password does not match our records")"""
             return render_template('index.html')
     else:
         flash("User does not exist in our records")
@@ -56,10 +67,11 @@ it hashes out the password for security"""
 @app.route('/add_user', methods=['POST'])
 def add_user():
     Users = mongo.db.Users
-    old_password = request.form.get('Password')
-    hash_pass = bcrypt.hashpw(old_password.encode("utf-8"), bcrypt.gensalt())
+    form_password = request.form.get('Password')    
+    hash_pass= bcrypt.generate_password_hash(form_password).decode('utf-8')
     fields = request.form.to_dict()
     fields['Password'] = hash_pass
+    """flash('Successfully Created User', 'success')"""
     Users.insert_one(fields)
     return redirect(url_for('manage_users'))
 
@@ -100,8 +112,6 @@ def update_user(user_id):
         'Username':request.form.get('Username'),
         'Password':new_pass,
     })
-
-    
 
     return redirect(url_for('manage_users'))
 
