@@ -5,7 +5,7 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, UserMixin
+from flask_login import LoginManager, UserMixin, login_user, current_user
 
 """Creating an instance of a Flask app and linking it to the MongoDB"""
 app = Flask(__name__)
@@ -39,22 +39,25 @@ def user_login():
     this_user = request.form.get('user_username')
     if mongo.db.Users.find({"Username": this_user}):
         user = mongo.db.Users.find_one({"Username": this_user})
+        this_user_id = user["_id"]
         if bcrypt.check_password_hash(user["Password"], unhashed_pwd):
-
+            login_user(this_user_id, remember=True, force=True)
             return redirect(url_for('user_profile'))
         else:
-            """flash("Password does not match our records")"""
-            return render_template('index.html')
+            """We do not want to specify which field was incorrect for security reasons"""
+            """flash("The login credentials do not match our records, please try again")"""
+            """flask.flash('The login credentials do not match our records, please try again')"""
     else:
-        flash("User does not exist in our records")
-        return render_template('index.html')
+        """flash("The login credentials do not match our records, please try again")"""
+    return render_template('index.html')
 
 """these app routes handle the user's pages and functionality"""
 
 """this app route displays all of the users in the DB Users collection"""
 @app.route('/manage_users')
 def manage_users():
-    return render_template('manage_users.html', Users=mongo.db.Users.find())
+    return render_template('manage_users.html', Users=mongo.db.Users.find()) 
+ 
 
 """this app route displays the form for a new user to sign up or for an admin to sign up a new user"""
 @app.route('/sign_up')
@@ -94,7 +97,7 @@ def update_user(user_id):
         this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
         new_pass = this_user["Password"]
     else:
-        new_pass = bcrypt.hashpw(form_password, bcrypt.gensalt())
+        new_pass= bcrypt.generate_password_hash(form_password).decode('utf-8')
     
     print(new_pass)
 
