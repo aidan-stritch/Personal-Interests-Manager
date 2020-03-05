@@ -41,7 +41,7 @@ def user_login():
         user = mongo.db.Users.find_one({"Username": this_user})
         this_user_id = user["_id"]
         if bcrypt.check_password_hash(user["Password"], unhashed_pwd):
-            login_user(this_user_id, remember=True, force=True)
+            login_user(user, remember=True, force=True)
             return redirect(url_for('user_profile'))
         else:
             """We do not want to specify which field was incorrect for security reasons"""
