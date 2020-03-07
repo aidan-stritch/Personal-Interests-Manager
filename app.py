@@ -47,8 +47,14 @@ and redirects to user profile.. if unsuccessful shows message and returns user t
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
-    unhashed_pwd = request.form.get('user_password')
-    this_user = request.form.get('user_username')
+    form_pwd = request.form.get('user_password')
+    form_username = request.form.get('user_username')
+
+    """this method removes the white spaces to ensure that when a user enters the username or password 
+    and accidentally includes a space it does not affect the login"""
+    unhashed_pwd = form_pwd.strip()
+    this_user = form_username.strip()
+
     user_log = mongo.db.Users.find_one({"Username": this_user})
     if user_log:
         if bcrypt.check_password_hash(user_log["Password"], unhashed_pwd):
@@ -60,9 +66,12 @@ def user_login():
             return redirect(url_for('user_profile'))
         else:
             """We do not want to specify which field was incorrect for security reasons"""
-            flash('The login credentials do not match our records, please try again')
+            flash('The login credentials do not match our records, please try again.')
+            flash('(please note that username and password are case sensitive)')
+
     else:
         flash('The login credentials do not match our records, please try again')
+        flash('(please note that username and password are case sensitive)')
     return render_template('index.html')
 
 """these app routes handle the user's pages and functionality"""
