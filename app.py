@@ -1,7 +1,7 @@
 """This area imports the neccessary libraries for this Python file"""
 import os
 import bcrypt
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
@@ -30,7 +30,7 @@ class User(UserMixin):
         return str(object_id)
 """the user loader takes in the user_id and in the returns the User object by passing the logged_User json object to it"""
 @login_manager.user_loader
-def current_user(user_id):
+def load_user(user_id):
     users = mongo.db.Users
     logged_user = users.find_one({'_id': ObjectId(user_id)})
     return User(logged_user)
@@ -54,6 +54,9 @@ def user_login():
         if bcrypt.check_password_hash(user_log["Password"], unhashed_pwd):
             loginuser = User(user_log)
             login_user(loginuser, remember=True)
+            
+            session['user'] = this_user
+            print("this is the session obj:", session["user"])
             return redirect(url_for('user_profile'))
         else:
             """We do not want to specify which field was incorrect for security reasons"""
@@ -67,13 +70,13 @@ def user_login():
 """this app route displays all of the users in the DB Users collection"""
 @app.route('/manage_users')
 def manage_users():
+    """this IF statement redirects the user to the login page if they have not already logged in"""
     if current_user.is_authenticated: 
         return render_template('manage_users.html', Users=mongo.db.Users.find()) 
     else: 
+        flash('Please login to view this page')
         return render_template('index.html')
     
- 
-
 """this app route displays the form for a new user to sign up or for an admin to sign up a new user"""
 @app.route('/sign_up')
 def sign_up():
@@ -144,7 +147,13 @@ def delete_user(user_id):
 For this version, it will simply be linked to all of the results in the DB"""
 @app.route('/user_profile')
 def user_profile():
-    return render_template('user_profile.html')
+    """this IF statement redirects the user to the login page if they have not already logged in"""
+    if current_user.is_authenticated: 
+        return render_template('user_profile.html')
+    else: 
+        flash('Please login to view this page')
+        return render_template('index.html')
+    
 
 """these app routes handle the film pages and functionality"""
 
