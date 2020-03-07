@@ -49,17 +49,17 @@ and redirects to user profile.. if unsuccessful shows message and returns user t
 def user_login():
     unhashed_pwd = request.form.get('user_password')
     this_user = request.form.get('user_username')
-    if mongo.db.Users.find({"Username": this_user}):
-        user_log = mongo.db.Users.find_one({"Username": this_user})
+    user_log = mongo.db.Users.find_one({"Username": this_user})
+    if user_log:
         if bcrypt.check_password_hash(user_log["Password"], unhashed_pwd):
             loginuser = User(user_log)
             login_user(loginuser, remember=True)
             return redirect(url_for('user_profile'))
         else:
             """We do not want to specify which field was incorrect for security reasons"""
-            flash('pwd The login credentials do not match our records, please try again')
+            flash('The login credentials do not match our records, please try again')
     else:
-        flash('username The login credentials do not match our records, please try again')
+        flash('The login credentials do not match our records, please try again')
     return render_template('index.html')
 
 """these app routes handle the user's pages and functionality"""
@@ -71,7 +71,7 @@ def manage_users():
         return render_template('manage_users.html', Users=mongo.db.Users.find()) 
     else: 
         return render_template('index.html')
-
+    
  
 
 """this app route displays the form for a new user to sign up or for an admin to sign up a new user"""
