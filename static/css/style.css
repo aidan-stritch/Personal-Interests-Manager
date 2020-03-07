@@ -59,6 +59,11 @@ body{
     margin-top:50px;
 }
 
-.page-heading h2{
+.page-heading h2 {
     font-size:45px;
+}
+
+.flash_messages {
+    font-size: 15px;
+    color: red;
 }

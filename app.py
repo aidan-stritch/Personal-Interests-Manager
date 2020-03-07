@@ -19,9 +19,21 @@ bcrypt = Bcrypt(app)
 """Creates an instance of LoginManager with the app inside """
 login_manager = LoginManager(app)
 
+"""creates a class for user that extends UserMixin so that we can use this 
+class when loging in a user in user_login"""
+class User(UserMixin):
+    def __init__(self, logged_user):
+        self.logged_user = logged_user
+    
+    def get_id(self):
+        object_id = self.logged_user.get('_id')
+        return str(object_id)
+"""the user loader takes in the user_id and in the returns the User object by passing the logged_User json object to it"""
 @login_manager.user_loader
 def current_user(user_id):
-    return mongo.db.Users.find_one({"_id": ObjectId(user_id)})
+    users = mongo.db.Users
+    logged_user = users.find_one({'_id': ObjectId(user_id)})
+    return User(logged_user)
 
 """sets the default app route"""
 @app.route('/')
@@ -38,17 +50,16 @@ def user_login():
     unhashed_pwd = request.form.get('user_password')
     this_user = request.form.get('user_username')
     if mongo.db.Users.find({"Username": this_user}):
-        user = mongo.db.Users.find_one({"Username": this_user})
-        this_user_id = user["_id"]
-        if bcrypt.check_password_hash(user["Password"], unhashed_pwd):
-            login_user(user, remember=True, force=True)
+        user_log = mongo.db.Users.find_one({"Username": this_user})
+        if bcrypt.check_password_hash(user_log["Password"], unhashed_pwd):
+            loginuser = User(user_log)
+            login_user(loginuser, remember=True)
             return redirect(url_for('user_profile'))
         else:
             """We do not want to specify which field was incorrect for security reasons"""
-            """flash("The login credentials do not match our records, please try again")"""
-            """flask.flash('The login credentials do not match our records, please try again')"""
+            flash('pwd The login credentials do not match our records, please try again')
     else:
-        """flash("The login credentials do not match our records, please try again")"""
+        flash('username The login credentials do not match our records, please try again')
     return render_template('index.html')
 
 """these app routes handle the user's pages and functionality"""
@@ -56,7 +67,11 @@ def user_login():
 """this app route displays all of the users in the DB Users collection"""
 @app.route('/manage_users')
 def manage_users():
-    return render_template('manage_users.html', Users=mongo.db.Users.find()) 
+    if current_user.is_authenticated: 
+        return render_template('manage_users.html', Users=mongo.db.Users.find()) 
+    else: 
+        return render_template('index.html')
+
  
 
 """this app route displays the form for a new user to sign up or for an admin to sign up a new user"""
@@ -384,6 +399,8 @@ def delete_quest(quest_id, game_name):
     return redirect(url_for('view_quests', game_name=game_name))
 
 if __name__ == '__main__':
+    app.secret_key = 'ThisSecretKey'
+
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
