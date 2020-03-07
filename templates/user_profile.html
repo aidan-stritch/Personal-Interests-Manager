@@ -5,16 +5,18 @@
 
 <div class="row">
     <div class="col s12 page-heading">
-        <h2>User Profile for </h2>
-        <h5>Username: {{ session["user"] }}</h5>
+        <h2>User Profile </h2>
+        <h5>Welcome {{ session["user"] }}</h5>
     </div>
 </div>
 
 <div class="row">
     <div class = "col s12">
-        Welcome to your profile. Please select which interest you would like to view by clicking on the buttons below!
+        Please select which interest you would like to view by clicking on the buttons below!
     </div>
 </div>
+
+
 <div class="row">
     <div class = "col s12">
         <span>
@@ -22,25 +24,40 @@
 
             You will be able to view all of your games, edit them, delete and add new games. 
         </span>
-        <a href="{{url_for('view_games')}}" class="waves-effect waves-light btn btn-large blue"><i class="material-icons right">gamepad</i>View My Games</a>
     </div> 
+</div>
+<div class="row">
+    <div class = "col s12">
+        <a href="{{url_for('view_games')}}" class="waves-effect waves-light btn btn-large blue"><i class="material-icons right">gamepad</i>View My Games</a>
+    </div>
+</div>
+<div class="row">
     <div class = "col s12">
         <span>
-            To see the TV shows in your collection and the episodes within each show, please click on the below link. 
+        To see the TV shows in your collection and the episodes within each show, please click on the below link. 
 
-            You will be able to view all of your TV shows, edit them, delete and add new shows. 
+        You will be able to view all of your TV shows, edit them, delete and add new shows. 
         </span>
+    </div>
+</div>
+<div class="row">
+    <div class = "col s12">
         <a href="{{url_for('view_tv')}}" class="waves-effect waves-light btn btn-large blue"><i class="material-icons right">tv</i>View My TV Shows</a>
     </div>
+</div>
+<div class="row">
     <div class = "col s12">
         <span>
             To see the movies in your collection, please click on the below link. 
 
             You will be able to view all of your movies, edit them, delete and add new movies. 
         </span>
+    </div>
+</div>
+<div class="row">
+    <div class = "col s12">
         <a href="{{url_for('view_movies')}}" class="waves-effect waves-light btn btn-large blue"><i class="material-icons right">local_movies</i>View My Movies</a>
     </div>
 </div>
-         
 
 {% endblock %}
