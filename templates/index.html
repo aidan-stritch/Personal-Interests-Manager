@@ -18,11 +18,11 @@
     <form action="{{ url_for('user_login') }}" method="POST"  class="col s12">
       <div class="row">
         <div class="input-field col s12">
-            <textarea required id="user_username" name="user_username" type="text" class="materialize-textarea" value=""></textarea>
+            <input required id="user_username" name="user_username" type="text" class="materialize-textarea" value=""></textarea>
             <label for="icon_prefix">Username</label>
         </div>
         <div class="input-field col s12">
-            <textarea required id="user_password" name="user_password" type="text" class="materialize-textarea" value=""></textarea>
+            <input required id="user_password" name="user_password" type="password" class="materialize-textarea" value=""></textarea>
             <label for="icon_prefix">Password</label>
         </div>
         <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
