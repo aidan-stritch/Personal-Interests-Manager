@@ -53,7 +53,7 @@ and redirects to user profile.. if unsuccessful shows message and returns user t
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
-    form_pwd = request.form.get('user_password').decode('utf-8')
+    form_pwd = request.form.get('user_password')
     form_username = request.form.get('user_username')
 
     """this method removes the white spaces to ensure that when a user enters the username or password 
