@@ -1,4 +1,4 @@
-"""This area imports the neccessary libraries for this Python file"""
+"""This area imports the neccessary libraries for this Python files functionality"""
 import os
 import bcrypt
 from flask import Flask, render_template, redirect, request, url_for, flash, session
@@ -6,11 +6,16 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user
+from dotenv import load_dotenv
+
+load_dotenv()
 
 """Creating an instance of a Flask app and linking it to the MongoDB"""
 app = Flask(__name__)
-app.config["MONGO_DBNAME"] = 'Interests_DB'
-app.config["MONGO_URI"] = 'mongodb+srv://PIM_Admin:PIM_R00T@interests-cluster-9djrk.mongodb.net/Interests_DB?retryWrites=true&w=majority'
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 """Creates an instance of PyMongo with the app inside """
 mongo = PyMongo(app)
@@ -417,8 +422,6 @@ def delete_quest(quest_id, game_name):
     return redirect(url_for('view_quests', game_name=game_name))
 
 if __name__ == '__main__':
-    app.secret_key = 'ThisSecretKey'
-
     app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+        port=int(os.environ.get('PORT')),
+        debug=True)
