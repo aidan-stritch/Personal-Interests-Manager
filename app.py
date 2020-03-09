@@ -53,7 +53,7 @@ and redirects to user profile.. if unsuccessful shows message and returns user t
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
-    form_pwd = request.form.get('user_password')
+    form_pwd = request.form.get('user_password').encode('utf-8')
     form_username = request.form.get('user_username')
 
     """this method removes the white spaces to ensure that when a user enters the username or password 
@@ -68,7 +68,6 @@ def user_login():
             login_user(loginuser, remember=True)
             
             session['user'] = this_user
-            print("this is the session obj:", session["user"])
             return redirect(url_for('user_profile'))
         else:
             """We do not want to specify which field was incorrect for security reasons"""
@@ -91,8 +90,14 @@ def manage_users():
     else: 
         flash('Please login to view this page')
         return render_template('index.html')
-    
-"""this app route displays the form for a new user to sign up or for an admin to sign up a new user"""
+"""this app route displays the form for a logged in user to add a new user """
+"""
+@app.route('/add_user')
+def add_user():
+    return render_template('add_user.html')
+"""
+
+"""this app route displays the form for a new user to sign up """
 @app.route('/sign_up')
 def sign_up():
     return render_template('sign_up.html')
@@ -110,6 +115,21 @@ def add_user():
     """flash('Successfully Created User', 'success')"""
     Users.insert_one(fields)
     return redirect(url_for('manage_users'))
+
+"""
+    form_user = request.form.get('Username') 
+    new_user = Users.find_one({"Username": form_user})
+
+    if 'user' in session:
+        return redirect(url_for('manage_users'))
+    else:
+        loginuser = User(new_user)
+        login_user(loginuser, remember=True)
+        session['user'] = new_user
+
+    return redirect(url_for('user_profile'))
+"""
+
 
 """these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
