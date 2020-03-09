@@ -13,9 +13,14 @@ load_dotenv()
 """Creating an instance of a Flask app and linking it to the MongoDB"""
 app = Flask(__name__)
 
+"""
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+"""
+app.config["MONGO_DBNAME"] = 'Interests_DB'
+app.config["MONGO_URI"] = 'mongodb+srv://PIM_Admin:PIM_R00T@interests-cluster-9djrk.mongodb.net/Interests_DB?retryWrites=true&w=majority'
+app.config["SECRET_KEY"] = 'ThisSecretKey'
 
 """Creates an instance of PyMongo with the app inside """
 mongo = PyMongo(app)
