@@ -53,7 +53,7 @@ and redirects to user profile.. if unsuccessful shows message and returns user t
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
-    form_pwd = request.form.get('user_password').encode('utf-8')
+    form_pwd = request.form.get('user_password').decode('utf-8')
     form_username = request.form.get('user_username')
 
     """this method removes the white spaces to ensure that when a user enters the username or password 
@@ -91,11 +91,10 @@ def manage_users():
         flash('Please login to view this page')
         return render_template('index.html')
 """this app route displays the form for a logged in user to add a new user """
-"""
-@app.route('/add_user')
-def add_user():
+
+@app.route('/new_user')
+def new_user():
     return render_template('add_user.html')
-"""
 
 """this app route displays the form for a new user to sign up """
 @app.route('/sign_up')
@@ -116,7 +115,7 @@ def add_user():
     Users.insert_one(fields)
     return redirect(url_for('manage_users'))
 
-"""
+
     form_user = request.form.get('Username') 
     new_user = Users.find_one({"Username": form_user})
 
@@ -128,7 +127,7 @@ def add_user():
         session['user'] = new_user
 
     return redirect(url_for('user_profile'))
-"""
+
 
 
 """these app routes allows the user to edit a specific user"""   
