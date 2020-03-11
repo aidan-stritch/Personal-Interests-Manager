@@ -5,7 +5,7 @@ from flask import Flask, render_template, redirect, request, url_for, flash, ses
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, UserMixin, login_user, current_user
+from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -79,6 +79,12 @@ def user_login():
         flash('(please note that username and password are case sensitive)')
     return render_template('index.html')
 
+"""this route will allow the user to log out and return them to the login page"""
+@app.route('/logout')
+def logout():
+    logout_user()
+    return render_template('index.html')
+
 """these app routes handle the user's pages and functionality"""
 
 """this app route displays all of the users in the DB Users collection"""
@@ -111,24 +117,21 @@ def add_user():
     hash_pass= bcrypt.generate_password_hash(form_password).decode('utf-8')
     fields = request.form.to_dict()
     fields['Password'] = hash_pass
-    """flash('Successfully Created User', 'success')"""
     Users.insert_one(fields)
-    return redirect(url_for('manage_users'))
 
-
-    form_user = request.form.get('Username') 
-    new_user = Users.find_one({"Username": form_user})
-
-    if 'user' in session:
+    if current_user.is_authenticated: 
+        flash('Successfully created new user')
         return redirect(url_for('manage_users'))
-    else:
+    else:       
+        form_user = request.form.get('Username') 
+        new_user = Users.find_one({"Username": form_user}) 
         loginuser = User(new_user)
         login_user(loginuser, remember=True)
-        session['user'] = new_user
+        form_user = request.form.get('Username') 
+        session['user'] = form_user
+        flash('Successfully created account for ', form_user)
 
     return redirect(url_for('user_profile'))
-
-
 
 """these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
@@ -167,13 +170,14 @@ def update_user(user_id):
         'Username':request.form.get('Username'),
         'Password':new_pass,
     })
-
+    flash('User profile successfully updated')
     return redirect(url_for('manage_users'))
 
 """this app route allows the user to delete a specific user"""
 @app.route('/delete_user/<user_id>')
 def delete_user(user_id):
     mongo.db.Users.remove({"_id": ObjectId(user_id)})
+    flash('User successfully deleted')
     return redirect(url_for('manage_users'))
 
 """this app route allows the user view the profile of the user"""
@@ -188,7 +192,6 @@ def user_profile():
         flash('Please login to view this page')
         return render_template('index.html')
     
-
 """these app routes handle the film pages and functionality"""
 
 """this app route loads and displays all results in the 
@@ -209,6 +212,7 @@ to the MongoDB Films collection"""
 def add_film():
     new_film = mongo.db.Films
     new_film.insert_one(request.form.to_dict())
+    flash('Successfully added new film')
     return redirect(url_for('view_movies'))
     
 """these app routes allows the user to edit a specific film"""   
@@ -231,12 +235,14 @@ def update_film(film_id):
         'Watched':request.form.get('Watched'),
         'Image':request.form.get('Image'),
     })
+    flash('Successfully edited film')
     return redirect(url_for('view_movies'))
 
 """this app route allows the user to delete a specific film"""
 @app.route('/delete_film/<film_id>')
 def delete_film(film_id):
     mongo.db.Films.remove({"_id": ObjectId(film_id)})
+    flash('Successfully deleted film')
     return redirect(url_for('view_movies'))
 
 """these app routes handle the tv show pages and functionality"""
@@ -259,6 +265,7 @@ to the MongoDB TV collection"""
 def add_tv():
     new_tv = mongo.db.TV
     new_tv.insert_one(request.form.to_dict())
+    flash('Successfully added new TV Show')
     return redirect(url_for('view_tv'))
 
 """these app routes allows the user to edit a specific TV show"""   
@@ -280,12 +287,14 @@ def update_tv(tv_id):
         'Genre':request.form.get('Genre'),
         'Image':request.form.get('Image'),
     })
+    flash('Successfully edited TV Show')
     return redirect(url_for('view_tv'))
 
 """this app route allows the user to delete a specific TV show"""
 @app.route('/delete_tv/<tv_id>')
 def delete_tv(tv_id):
     mongo.db.TV.remove({"_id": ObjectId(tv_id)})
+    flash('Successfully deleted TV Show')
     return redirect(url_for('view_tv'))
 
 """these app routes handle the episodes pages and functionality"""
@@ -310,6 +319,7 @@ def add_episode():
     new_episode = mongo.db.Episodes
     new_episode.insert_one(request.form.to_dict())
     show_name = request.form.get('Show')
+    flash('Successfully added new episode')
     return redirect(url_for('view_episodes', tv_name=show_name))
 
 """these app routes allows the user to edit a specific episode"""   
@@ -333,12 +343,14 @@ def update_episode(episode_id):
         'Episode_Number':request.form.get('Episode_Number'),
     })
     show_name = request.form.get('Show')
+    flash('Successfully edited episode')
     return redirect(url_for('view_episodes', tv_name=show_name))
 
 """this app route allows the user to delete a specific episode"""
 @app.route('/delete_episode/<episode_id>/<tv_name>')
 def delete_episode(episode_id, tv_name):
     mongo.db.Episodes.remove({"_id": ObjectId(episode_id)})
+    flash('Successfully deleted episode')
     return redirect(url_for('view_episodes', tv_name=tv_name))
 
 """these app routes handle the games pages and functionality"""
@@ -361,6 +373,7 @@ to the MongoDB Games collection"""
 def add_game():
     new_game = mongo.db.Games
     new_game.insert_one(request.form.to_dict())
+    flash('Successfully added new game')
     return redirect(url_for('view_games'))
 
 """these app routes allows the user to edit a specific game"""   
@@ -380,12 +393,14 @@ def update_game(game_id):
         'Description':request.form.get('Description'),
         'Image':request.form.get('Image'),
     })
+    flash('Successfully edited game')
     return redirect(url_for('view_games'))
 
 """this app route allows the user to delete a specific game"""
 @app.route('/delete_game/<game_id>')
 def delete_game(game_id):
     mongo.db.Games.remove({"_id": ObjectId(game_id)})
+    flash('Successfully deleted game')
     return redirect(url_for('view_games'))
 
 """these app routes handle the quests pages and functionality"""
@@ -412,6 +427,7 @@ def add_quest():
     print(quest)
     new_quest.insert_one(quest) 
     game_name = request.form.get('Game')
+    flash('Successfully added new quest')
     return redirect(url_for('view_quests', game_name=game_name))
 
 """these app routes allows the user to edit a specific quest"""   
@@ -433,12 +449,14 @@ def update_quest(quest_id):
         'Rec_Level':request.form.get('Rec_Level'),
     })
     game_name = request.form.get('Game')
+    flash('Successfully edited quest')
     return redirect(url_for('view_quests', game_name=game_name))
 
 """this app route allows the user to delete a specific quest"""
 @app.route('/delete_quest/<quest_id>/<game_name>')
 def delete_quest(quest_id, game_name):
     mongo.db.Quests.remove({"_id": ObjectId(quest_id)})
+    flash('Successfully deleted quest')
     return redirect(url_for('view_quests', game_name=game_name))
 
 if __name__ == '__main__':

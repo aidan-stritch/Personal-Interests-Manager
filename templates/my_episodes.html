@@ -4,6 +4,15 @@
 {% block content%}
 
 <h2>{{show}} - Episode List</h2>
+<!-- A with that finds all the flash messages that are available -->
+{% with flash_messages = get_flashed_messages() %}
+	<!-- if there are messages then it loops through them and displays each in a <h4> tag -->
+	{% if flash_messages %}
+		{% for flash_message in flash_messages %}
+			<h4 class = "flash_messages">{{ flash_message }}</h4>
+		{% endfor%}
+	{% endif %}
+{% endwith%}
 <a href="{{url_for('new_episode', tv_name=show)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">dvr</i>Add Episode</a>
 
 <!-- This area controls the materialize accordian 
