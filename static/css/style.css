@@ -68,4 +68,9 @@ body{
     color: red;
     line-height: 5px;
 }
+@media (max-width:991px){
+    .brand-logo {
+        font-size: 10px;
+    }
+}
 

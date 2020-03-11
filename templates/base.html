@@ -19,19 +19,23 @@
                         <!-- this if statement checks if the user is logged in. if not, the "signup" button shows, 
                         if they are logged in the "logout" button shows--> 
                         {% if current_user.is_authenticated %}
-                            <li><a href="{{url_for('logout')}}">Log Out</a></li>
+                            <li><a href="{{url_for('logout')}}"><i class="material-icons left">exit_to_app</i>Log Out</a></li>
                         {% else %}
-                            <li><a href="{{url_for('sign_up')}}">Sign Up</a></li>
+                            <li><a href="{{url_for('sign_up')}}"><i class="material-icons left">person_add</i>Sign Up</a></li>
                         {% endif %}
                         <li><a href="{{url_for('user_profile')}}"><i class="material-icons left">home</i>Profile</a></li>
-                        <li><a href="{{url_for('manage_users')}}">Manage Users</a></li>
+                        <li><a href="{{url_for('manage_users')}}"><i class="material-icons left">face</i>Manage Users</a></li>
                     </ul>
                     <!-- This will display the additional links in a side nav 
                         bar when in mobile view-->
                     <ul class="side-nav" id="mobile-demo">
-                        ddd
-                        <li><a href="{{url_for('user_profile')}}">Profile</a></li>
-                        <li><a href="{{url_for('manage_users')}}">Manage Users</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{url_for('logout')}}"><i class="material-icons left">exit_to_app</i>Log Out</a></li>
+                        {% else %}
+                            <li><a href="{{url_for('sign_up')}}"><i class="material-icons left">person_add</i>Sign Up</a></li>
+                        {% endif %}
+                        <li><a href="{{url_for('user_profile')}}"><i class="material-icons left">home</i>Profile</a></li>
+                        <li><a href="{{url_for('manage_users')}}"><i class="material-icons left">face</i>Manage Users</a></li>
                     </ul>
                 </div>
             </nav>
