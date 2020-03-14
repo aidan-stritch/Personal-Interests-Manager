@@ -14,7 +14,10 @@
 	{% endif %}
 {% endwith%}
 
-<a href="{{url_for('sign_up')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">person_add</i>New User</a>
+<a href="{{url_for('new_user')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">person_add</i>New User</a>
+<!-- this button sends the user to the last page they were on-->
+<button type="button" class="btn btn-back" onclick="javascript:history.back()">Back</button>
+
 <!-- This area controls the materialize accordian 
 display component to showcase the user information -->
 <ul class="collapsible">

@@ -13,7 +13,7 @@ load_dotenv()
 """Creating an instance of a Flask app and linking it to the MongoDB"""
 app = Flask(__name__)
 
-
+"""this gets the DB name, URI and secret key from the .env file for the app configuration"""
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
@@ -118,7 +118,8 @@ def add_user():
     fields = request.form.to_dict()
     fields['Password'] = hash_pass
     Users.insert_one(fields)
-
+    """if the user is authenticated then they are brought back to the 
+    manage_user's page and if not they are logged in and redirected to their user profile"""
     if current_user.is_authenticated: 
         flash('Successfully created new user')
         return redirect(url_for('manage_users'))

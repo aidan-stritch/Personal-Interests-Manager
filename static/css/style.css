@@ -11,6 +11,15 @@ body{
     font-size: 12px;
 }
 
+.btn-back{
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    margin: 5px 5px;
+    padding: 0 0.5em;
+    font-size: 12px;
+}
+
 .btn-small i {
     font-size: 20px;
 }
