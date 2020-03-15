@@ -51,7 +51,9 @@ display component to showcase the user information -->
                 <h5><strong>No Image Available</strong></h5>
                 To add an image for this item, please click on the "Edit" button above and add a link to the image.
             {% else %}
-                <img src="{{game.Image}}" alt="{{game.Game_Name}}" class="result_image">
+                <!-- for this image link, if the image file does not load correctly, the display is set to none so that 
+                the user does not see a broken image link-->
+                <img src="{{game.Image}}" alt="{{game.Game_Name}}" class="result_image" onerror="this.style.display='none';">
             {% endif%}
             </span>
         </div>
