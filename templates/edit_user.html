@@ -13,18 +13,18 @@ component to allow the user to edit an existing users details and submit -->
 			<div class="input-field col s12">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">account_circle</i>
-					<textarea id="First_Name" name="First_Name" type="text" class="materialize-textarea" value="">{{user.First_Name}}</textarea>
+					<textarea required id="First_Name" name="First_Name" type="text" class="materialize-textarea" value="">{{user.First_Name}}</textarea>
 					<label for="icon_prefix">First Name</label>
 				</div>
 				<div class="input-field col s6">
 					<i class="material-icons prefix">account_circle</i>
-					<textarea id="Last_Name" name="Last_Name" type="text" class="materialize-textarea" value="">{{user.Last_Name}}</textarea>
+					<textarea required id="Last_Name" name="Last_Name" type="text" class="materialize-textarea" value="">{{user.Last_Name}}</textarea>
 					<label for="icon_prefix">Last Name</label>
 				</div>
 			</div>
 			<div class="input-field col s12">
 				<i class="material-icons prefix">house</i>
-				<textarea id="Address_Line_1" name="Address_Line_1" type="text" class="materialize-textarea" value="">{{user.Address_Line_1}}</textarea>
+				<textarea required id="Address_Line_1" name="Address_Line_1" type="text" class="materialize-textarea" value="">{{user.Address_Line_1}}</textarea>
 				<label for="icon_prefix">Address Line 1</label>
 			</div>
 			<div class="input-field col s12">
@@ -40,12 +40,12 @@ component to allow the user to edit an existing users details and submit -->
 			<div class="input-field col s12">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">house</i>
-					<textarea id="City" name="City" type="text" class="materialize-textarea" value="">{{user.City}}</textarea>
+					<textarea required id="City" name="City" type="text" class="materialize-textarea" value="">{{user.City}}</textarea>
 					<label for="icon_prefix">City</label>
 				</div>
 				<div class="input-field col s6">
 					<i class="material-icons prefix">house</i>
-					<textarea id="Postcode" name="Postcode" type="text" class="materialize-textarea" value="">{{user.Postcode}}</textarea>
+					<textarea required id="Postcode" name="Postcode" type="text" class="materialize-textarea" value="">{{user.Postcode}}</textarea>
 					<label for="icon_prefix">Postcode</label>
 				</div>
 			</div>
@@ -57,14 +57,14 @@ component to allow the user to edit an existing users details and submit -->
 				</div>
 				<div class="input-field col s6">
 					<i class="material-icons prefix">email</i>
-					<input id="Email" name="Email" type="tel" class="validate" value={{user.Email}}>
+					<input required id="Email" name="Email" type="tel" class="validate" value={{user.Email}}>
 					<label for="icon_telephone">Email</label>
 				</div>
 			</div>
 			<div class="input-field col s12">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">account_box</i>
-					<input id="Username" name="Username" type="tel" class="validate" value={{user.Username}}>
+					<input required id="Username" name="Username" type="tel" class="validate" value={{user.Username}}>
 					<label for="icon_telephone">Username</label>
 				</div>
 				<div class="input-field col s6">

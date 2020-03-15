@@ -18,7 +18,7 @@ component to allow the user to update a movies details and submit -->
 					</div>
 					<div class="col s6">
 						<strong>Quest Name: </strong>
-						<textarea id="Quest_Name" name="Quest_Name" type="text" class="materialize-textarea">{{quest.Quest_Name}}</textarea>
+						<textarea required id="Quest_Name" name="Quest_Name" type="text" class="materialize-textarea">{{quest.Quest_Name}}</textarea>
 					</div>
 				</div>
 				<div class="row">
@@ -31,7 +31,7 @@ component to allow the user to update a movies details and submit -->
 					<div class="col s12">
 						<strong>Recommended Level (Current Level:{{quest.Rec_Level}}/50): </strong>
 						<p class="range-field">
-							<input type="range" id="Rec_Level" name="Rec_Level" min="1" max="50" value="{{quest.Rec_Level}}" onchange="update_range_value(this.value);"/>
+							<input required type="range" id="Rec_Level" name="Rec_Level" min="1" max="50" value="{{quest.Rec_Level}}" onchange="update_range_value(this.value);"/>
                         </p>
 					</div>
 				</div>

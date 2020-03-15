@@ -18,17 +18,17 @@ component to allow the user to update a movies details and submit -->
 					</div>
 					<div class="col s6">
 						<strong>Episode Name: </strong>
-						<textarea id="Name" name="Name" type="text" class="materialize-textarea">{{episode.Name}}</textarea>
+						<textarea required id="Name" name="Name" type="text" class="materialize-textarea">{{episode.Name}}</textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s6">
 						<strong>Episode Number: </strong>
-						<textarea id="Episode_Number" name="Episode_Number" class="materialize-textarea">{{episode.Episode_Number}}</textarea>
+						<textarea required id="Episode_Number" name="Episode_Number" class="materialize-textarea">{{episode.Episode_Number}}</textarea>
 					</div>
                     <div class="col s6">
 						<strong>Season Number: </strong>
-						<textarea id="Season_Number" name="Season_Number" class="materialize-textarea">{{episode.Season_Number}}</textarea>
+						<textarea required id="Season_Number" name="Season_Number" class="materialize-textarea">{{episode.Season_Number}}</textarea>
 					</div>
 				</div>
 				<div class="row">
@@ -48,7 +48,7 @@ component to allow the user to update a movies details and submit -->
                 <div class="row">
                     <div id="matfix" class="col s12 ">
                         <strong>Air Date</strong>
-                        <input id="Air_Date" name="Air_Date" type="text" class="datepicker" value="{{episode.Air_Date}}">
+                        <input required id="Air_Date" name="Air_Date" type="text" class="datepicker" value="{{episode.Air_Date}}">
                     </div>
                 </div>
             </div>
