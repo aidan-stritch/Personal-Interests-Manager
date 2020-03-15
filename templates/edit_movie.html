@@ -13,7 +13,7 @@ component to allow the user to update a movies details and submit -->
 			<div class="input-field col s12 resize_textarea">
 				<div class="row">
 					<div class="col s6">
-						<strong>Film Name: </strong>
+						<strong>Film Name:  - <strong class="required-field">*Required Field</strong></strong>
 						<textarea required id="Name" name="Name" type="text" class="materialize-textarea">{{film.Name}}</textarea>
 					</div>
 					<div class="col s6">
@@ -47,8 +47,8 @@ component to allow the user to update a movies details and submit -->
 				</div>
                 <div class="row">
                     <div id="matfix" class="col s12 ">
-                        <strong>Release Date</strong>
-                        <input id="Release_Date" name="Release_Date" type="text" class="datepicker" value="{{film.Release_Date}}">
+                        <strong>Release Date - <strong class="required-field">*Required Field</strong></strong>
+                        <input required id="Release_Date" name="Release_Date" type="text" class="datepicker" value="{{film.Release_Date}}">
                     </div>
                 </div>
                 <div class="row">
