@@ -1,4 +1,4 @@
-----------------------Miscellaneous 
+/*---------------------Miscellaneous*/ 
 body{
     background-color:white;
 }
@@ -13,7 +13,7 @@ body{
     line-height: 5px;
 }
 
-----------------------Buttons
+/*----------------------Buttons*/
 .btn-small{
     height: 30px;
     width: 150px;
@@ -51,24 +51,31 @@ body{
     font-size: 50px;
 }
 
-----------------------Accordian
+/*----------------------Accordian*/
 .accordian-title{
     margin-top:5px;
     margin-left:5px;
+    width:100%;
 }
 
 .accordian-btn{
     float:right;
+    height: 30px;
+    width: 150px;
+    line-height: 30px;
+    margin: 5px 5px;
+    padding: 0 0.5em;
+    font-size: 12px;
 }
 
-----------------------Images
+/*----------------------Images*/
 .result_image{
-    height:250px;
+    height:300px;
     width: 250px;
     margin-left: 25%;
 }
 
-----------------------Forms
+/*----------------------Forms*/
 .form_switch{
     position: relative;
     margin: 5px 5px 5px 5px;
@@ -87,9 +94,9 @@ body{
     color:red;
 }
 
-------------------------------------Media CSS
+/*------------------------------------Media CSS*/
 @media (max-width:991px){
-    ----------------------Miscellaneous 
+    /*----------------------Miscellaneous*/ 
     .brand-logo {
         font-size: 10px;
     }
