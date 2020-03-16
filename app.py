@@ -130,7 +130,7 @@ def add_user():
         login_user(loginuser, remember=True)
         form_user = request.form.get('Username') 
         session['user'] = form_user
-        flash('Successfully created account for ', form_user)
+        flash('Successfully created account!')
 
     return redirect(url_for('user_profile'))
 
