@@ -14,9 +14,8 @@
 	{% endif %}
 {% endwith%}
 <a href="{{url_for('new_episode', tv_name=show)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">dvr</i>Add Episode</a>
+<a href="{{url_for('view_tv')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">tv</i>My TV Shows</a>
 
-<!-- this button sends the user to the last page they were on-->
-<button type="button" class="btn btn-back" onclick="javascript:history.back()">Back</button>
 
 <!-- This area controls the materialize accordian 
 display component to showcase the user information -->

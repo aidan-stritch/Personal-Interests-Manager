@@ -13,7 +13,6 @@ body{
     line-height: 5px;
 }
 
-
 ----------------------Buttons
 .btn-small{
     height: 30px;
@@ -52,7 +51,6 @@ body{
     font-size: 50px;
 }
 
-
 ----------------------Accordian
 .accordian-title{
     margin-top:5px;
@@ -63,14 +61,12 @@ body{
     float:right;
 }
 
-
 ----------------------Images
 .result_image{
     height:250px;
     width: 250px;
     margin-left: 25%;
 }
-
 
 ----------------------Forms
 .form_switch{
@@ -90,7 +86,6 @@ body{
     font-size: 10px;
     color:red;
 }
-
 
 ------------------------------------Media CSS
 @media (max-width:991px){

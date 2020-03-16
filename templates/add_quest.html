@@ -13,23 +13,23 @@ component to allow the user to add a new quests details and submit -->
 			<div class="input-field col s12 resize_textarea">
 				<div class="row">
 					<div class="col s6">
-						<strong>Game Name: </strong>
+						<strong>Game Name </strong>
 						<textarea readonly id="Game" name="Game" type="text" class="materialize-textarea">{{game}}</textarea>
 					</div>
 					<div class="col s6">
-						<strong>Quest Name:  - <strong class="required-field">*Required Field</strong></strong>
+						<strong>Quest Name <strong class="required-field">*Required Field</strong></strong>
 						<textarea required id="Quest_Name" name="Quest_Name" type="text" class="materialize-textarea"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col s12">
-						<strong>Description: </strong>
+						<strong>Description </strong>
 						<textarea id="Description" name="Description" class="materialize-textarea"></textarea>
 					</div>
 				</div>
                 <div class="row">
 					<div class="col s12">
-						<strong>Recommended Level (/50):  - <strong class="required-field">*Required Field</strong></strong>
+						<strong>Recommended Level (/50) <strong class="required-field">*Required Field</strong></strong>
 						<p class="range-field">
 							<input required type="range" id="Rec_Level" name="Rec_Level" min="1" max="50" value="0" onchange="update_range_value(this.value);"/>
                         </p>

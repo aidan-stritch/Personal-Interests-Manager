@@ -14,8 +14,7 @@
 	{% endif %}
 {% endwith%}
 <a href="{{url_for('new_game')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">gamepad</i>New Game</a>
-<!-- this button sends the user to the last page they were on-->
-<button type="button" class="btn btn-back" onclick="javascript:history.back()">Back</button>
+<a href="{{url_for('user_profile')}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">face</i>User Profile</a>
 
 <!-- This area controls the materialize accordian 
 display component to showcase the user information -->

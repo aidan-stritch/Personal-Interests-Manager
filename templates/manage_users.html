@@ -26,13 +26,13 @@ display component to showcase the user information -->
     {% for user in Users %}
     <li>
         <div class="collapsible-header">
-            <div class="col s3">
+            <div class="col s9 accordian-title">
                 <i class="material-icons">keyboard_arrow_down</i>
+                <strong>{{user.Last_Name}}, {{user.First_Name}} - </strong> {{user.Username}}
+            </div>
+            <div class="col s3 accordian-btn">
                 <a href="{{url_for('edit_user', user_id=user._id)}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
                 <a href="{{url_for('delete_user', user_id=user._id)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
-            </div>
-            <div class="col s9 accordian-title">
-                <strong>{{user.Last_Name}}, {{user.First_Name}} - </strong> {{user.Username}}
             </div>
         </div>
 
