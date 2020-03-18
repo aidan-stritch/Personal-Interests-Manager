@@ -142,13 +142,45 @@ nav h1 {
         display:none;
     }  
 
-    /*----------------------Accordian*/
-    .accordian-title span{
-        clear:both;
+    .btn-small {
+        width: 120px;
     }
 
+    .btn-small i {
+        display:none;        
+    }
+
+    /*----------------------Accordian*/
+    
     .accordian-btn{
         width: 70px;
     }
+    
 }
 
+
+@media (max-width:450px){
+    /*----------------------Miscellaneous*/
+    .nav-wrapper h1{
+        font-size: 16px;
+        padding-right: 0;
+        padding-left: 25px;
+        width: 250;
+    }
+
+    /*----------------------Buttons*/
+    .btn-large {
+        height: 70px;
+        width: 250px;
+        line-height: 70px;
+        font-size: 16px;
+        margin-left: 5%;
+        text-align: left;
+        margin-bottom: 1px;
+        margin-top: 1px;
+    }
+
+    .btn-large i {
+        font-size: 20px;
+    }
+}
