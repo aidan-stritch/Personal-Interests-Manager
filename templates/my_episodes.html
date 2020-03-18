@@ -3,7 +3,7 @@
 
 {% block content%}
 
-<h2>{{show}} - Episode List</h2>
+<h2 class="page-header">{{show}} - Episode List</h2>
 <!-- A with that finds all the flash messages that are available -->
 {% with flash_messages = get_flashed_messages() %}
 	<!-- if there are messages then it loops through them and displays each in a <h4> tag -->
@@ -28,8 +28,8 @@ display component to showcase the user information -->
             <div class="accordian-title">
                 <i class="material-icons">keyboard_arrow_down</i>
                 <strong>{{episode.Name}} - </strong> Episode: {{episode.Episode_Number}}
-                <a href="{{url_for('delete_episode', episode_id=episode._id, tv_name=episode.Show)}}"class="waves-effect waves-light btn accordian-btn"><i class="material-icons right">delete</i>Delete</a>
-                <a href="{{url_for('edit_episode', episode_id=episode._id)}}" class="waves-effect waves-light btn accordian-btn blue"><i class="material-icons right">build</i>Edit</a>
+                <a href="{{url_for('delete_episode', episode_id=episode._id, tv_name=episode.Show)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">delete</i>Delete</a>
+                <a href="{{url_for('edit_episode', episode_id=episode._id)}}" class="waves-effect waves-light btn accordian-btn blue btn-mob"><i class="material-icons right">build</i>Edit</a>
             </div>
         </div>
 

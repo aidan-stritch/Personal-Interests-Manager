@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col s12 page-heading">
-        <h2>User Profile </h2>
+        <h2 class="page-header">User Profile </h2>
         <h5>Welcome {{ session["user"] }}</h5>
         <!-- A with that finds all the flash messages that are available -->
         {% with flash_messages = get_flashed_messages() %}
@@ -27,7 +27,7 @@
 
 
 <div class="row">
-    <div class = "col s12">
+    <div class = "col s12 non-essential-text">
         <span>
             To see the video games in your collection and the quests within each game, please click on the below link. 
 
@@ -41,7 +41,7 @@
     </div>
 </div>
 <div class="row">
-    <div class = "col s12">
+    <div class = "col s12 non-essential-text">
         <span>
         To see the TV shows in your collection and the episodes within each show, please click on the below link. 
 
@@ -55,7 +55,7 @@
     </div>
 </div>
 <div class="row">
-    <div class = "col s12">
+    <div class = "col s12 non-essential-text">
         <span>
             To see the movies in your collection, please click on the below link. 
 

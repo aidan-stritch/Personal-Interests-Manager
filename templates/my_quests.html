@@ -3,7 +3,7 @@
 
 {% block content%}
 
-<h2>{{game}} - Quest List</h2>
+<h2 class="page-header">{{game}} - Quest List</h2>
 <!-- A with that finds all the flash messages that are available -->
 {% with flash_messages = get_flashed_messages() %}
 	<!-- if there are messages then it loops through them and displays each in a <h4> tag -->
@@ -29,8 +29,8 @@ display component to showcase the user information -->
             <div class="col s9 accordian-title">
                 <i class="material-icons">keyboard_arrow_down</i>
                 <strong>{{quest.Quest_Name}} -</strong> Recommended Player Level: {{quest.Rec_Level}}
-                <a href="{{url_for('delete_quest', quest_id=quest._id, game_name=quest.Game)}}"class="waves-effect waves-light btn accordian-btn"><i class="material-icons right">delete</i>Delete</a>                
-                <a href="{{url_for('edit_quest', quest_id=quest._id)}}" class="waves-effect waves-light btn accordian-btn blue"><i class="material-icons right">build</i>Edit</a>
+                <a href="{{url_for('delete_quest', quest_id=quest._id, game_name=quest.Game)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">delete</i>Delete</a>                
+                <a href="{{url_for('edit_quest', quest_id=quest._id)}}" class="waves-effect waves-light btn accordian-btn blue btn-mob"><i class="material-icons right">build</i>Edit</a>
             </div>
         </div>
 

@@ -3,7 +3,7 @@
 
 {% block content%}
 
-<h2>Manage Users</h2>
+<h2 class="page-header">Manage Users</h2>
 <!-- A with that finds all the flash messages that are available -->
 {% with flash_messages = get_flashed_messages() %}
 	<!-- if there are messages then it loops through them and displays each in a <h4> tag -->
@@ -30,9 +30,9 @@ display component to showcase the user information -->
                 <i class="material-icons">keyboard_arrow_down</i>
                 <strong>{{user.Last_Name}}, {{user.First_Name}} - </strong> {{user.Username}}
             </div>
-            <div class="col s3 accordian-btn">
-                <a href="{{url_for('edit_user', user_id=user._id)}}" class="waves-effect waves-light btn btn-small blue"><i class="material-icons right">build</i>Edit</a>
-                <a href="{{url_for('delete_user', user_id=user._id)}}"class="waves-effect waves-light btn btn-small"><i class="material-icons right">delete</i>Delete</a>
+            <div class="col s3 accordian-btn"> 
+                <a href="{{url_for('edit_user', user_id=user._id)}}" class="waves-effect waves-light btn btn-small blue btn-mob"><i class="material-icons right">build</i>Edit</a>
+                <a href="{{url_for('delete_user', user_id=user._id)}}"class="waves-effect waves-light btn btn-small btn-mob"><i class="material-icons right">delete</i>Delete</a>
             </div>
         </div>
 
