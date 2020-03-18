@@ -13,6 +13,11 @@ body{
     line-height: 5px;
 }
 
+.editable-switch {
+    padding-left:10px;
+}
+
+
 /*----------------------Buttons*/
 .btn-small{
     height: 30px;

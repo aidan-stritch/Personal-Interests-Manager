@@ -38,7 +38,7 @@ component to allow the user to update a movies details and submit -->
             </div>
             <div class="row">
                 <div class="col s12 switch form_switch">
-                    <label>
+                    <label class = "editable-switch">
                     <strong>Active</strong>
                         {% if quest.Active_Quest %}
                             <input id="Active_Quest" name="Active_Quest" type="checkbox" checked>
@@ -51,7 +51,7 @@ component to allow the user to update a movies details and submit -->
             </div>
             <div class="row">
                 <div class="col s12 switch form_switch">
-                    <label>
+                    <label class = "editable-switch">
                     <strong>Completed</strong>
                             {% if quest.Completed %}
                                 <input id="Completed" name="Completed" type="checkbox" checked>
