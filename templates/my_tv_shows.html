@@ -23,13 +23,15 @@ display component to showcase the user information -->
     accordian list item and populate it with the data-->
     {% for tv in TV %}
     <li>
-        <div class="collapsible-header">
-            <div class="accordian-title">
+        <div class="collapsible-header collection">
+            <div class="accordian-title collection-item">
                 <i class="material-icons">keyboard_arrow_down</i>
                 <strong>{{tv.Name}} </strong> <span class ="sm-hidden">- Pilot Date: {{tv.Pilot_Date}}</span>
-                <a href="{{url_for('view_episodes', tv_name=tv.Name)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">dvr</i>Episodes</a>
-                <a href="{{url_for('delete_tv', tv_id=tv._id)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">delete</i>Delete</a>
-                <a href="{{url_for('edit_tv', tv_id=tv._id)}}" class="waves-effect waves-light btn accordian-btn blue btn-mob"><i class="material-icons right">build</i>Edit</a>
+                <span class="secondary-content">
+                    <a href="{{url_for('view_episodes', tv_name=tv.Name)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">dvr</i>Episodes</a>
+                    <a href="{{url_for('delete_tv', tv_id=tv._id)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">delete</i>Delete</a>
+                    <a href="{{url_for('edit_tv', tv_id=tv._id)}}" class="waves-effect waves-light btn accordian-btn blue btn-mob"><i class="material-icons right">build</i>Edit</a>
+                </span>
             </div>
         </div>
         <div class="collapsible-body">

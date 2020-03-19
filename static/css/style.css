@@ -197,3 +197,12 @@ nav h1 {
         font-size: 20px;
     }
 }
+
+@media (max-width:350px){
+    /*----------------------Buttons*/
+    .sm-float{
+        float:left;
+        font-size:11px;
+        width: 62px;
+    }
+}
