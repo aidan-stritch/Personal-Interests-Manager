@@ -26,7 +26,7 @@ display component to showcase the user information -->
         <div class="collapsible-header  ">
             <div class="accordian-title">
                 <i class="material-icons">keyboard_arrow_down</i>
-                <strong>{{film.Name}} - </strong> Released: {{film.Release_Date}}
+                <strong>{{film.Name}} </strong> <span class ="sm-hidden">- Release Date: {{film.Release_Date}}</span>
                 <a href="{{url_for('delete_film', film_id=film._id)}}" class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">delete</i>Delete</a>
                 <a href="{{url_for('edit_film', film_id=film._id)}}" class="waves-effect waves-light btn blue accordian-btn btn-mob"><i class="material-icons right">build</i>Edit</a>
             </div>
@@ -37,8 +37,9 @@ display component to showcase the user information -->
             <ul>
             <li><strong>Director: </strong> {{film.Director}}</li>
             <li><strong>Rating: </strong> {{film.Rating}}%</li>
-            <li><strong>Description: </strong> {{film.Description}}</li>
             <li><strong>Genre: </strong> {{film.Genre}}</li>
+            <li><strong>Release Date: </strong> {{film.Release_Date}}</li>
+            <li><strong>Description: </strong> {{film.Description}}</li>
             </ul>
             <div class="switch">
                 <strong>Watched:</strong>

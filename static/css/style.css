@@ -96,10 +96,11 @@ nav h1 {
 .resize_field textarea{
     height:5px;
 }
-
+/*
 .form_btn {
     margin-top:50px;
 }
+*/
 
 .required-field {
     font-size: 10px;
@@ -154,6 +155,18 @@ nav h1 {
     
     .accordian-btn{
         width: 70px;
+    }
+
+    /*----------------------Images*/
+    .result_image{
+        height:200px;
+        width: 150px;
+        margin-left: 25%;
+        margin-top: 5%;
+    }
+
+    .sm-hidden {
+        display:none;
     }
     
 }
