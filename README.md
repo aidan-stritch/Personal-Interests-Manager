@@ -151,26 +151,62 @@ are correct in the database.
 ### Entity Relationship Diagram (ERD)
 ![Entity Relationship Diagram](static/erd's/ERD.png "Entity Relationship Diagram showing relationships on Database")
 
-
-
-
-
 ## Features
-### Existing Features
 This version of the website is the administrator side of this site, which allows all users to view 
 the users as well as to create, read, update and delete data related to the users, movies, tv shows, 
 games, quests and episodes. Please see the Features Left to Implement section for more details on 
 version two of the website.
+
+### Existing Features
+1. **Login -** The customers are able to create their own accounts and log into the website 
+with secure details.
+2. **Sign-Up -** New users can sign up themselves if they wish to set up an account. 
+3. **User Profile -** Each user has their own profile that welcomes them by Username for
+personalisation. 
+4. **Create Data -** Users can add new items to the database using a simple form.
+5. **Read Data -** All users can read the data from the database relating to the Movies, 
+TV shows, and Games they wish to view. 
+6. **Update Data -** Users can edit the data relating to the items from the database in an 
+easy to use form.
+7. **Delete Data -** Users can delete any item that is no longer required with one button. 
+8. **User Management -** Users can currently view all users and create new users, edit them 
+or delete them with our simple to use Manage Users page. 
+9. **Quest tracking -** Users can update the quests in the games that they follow with an 
+easy to use switch that lets them mark the quest as "active" or "completed" to help them
+track their progress easier.
+10. **Episode tracking -** Users can update the episodes of the shows that they watch by 
+marking them as "watched" with an easy to use switch. This allows them to monitor where
+they are in each show. 
+11. **Log-out -** Users can log out of the website at any time by clicking on the logout 
+button on any page in the nav bar. 
+
 ### Features Left to Implement
-users
-admin
-notice for new episodes
-trophies in games
-current quest
-connect profile with other users 
-have a "news feed" showing new updates on movies, episodes etc.
-expand to other interests Music etc. 
-login check to see if username exists
+1. **Administrator Privileges -** Currently, the website is set up for users to have unlimited 
+functionality once logged in. Version 2 would include a limitation on functionality depending 
+on user privileges. If the user is an administrator, they will have access to all functionality
+and will be able to view the user's in the manage users page. Non-administrator users will only 
+have access to their own user data, their profile, and will only be able to read from the database.
+2. **User Specific Content -** In version 2, when a user logs in, they will be able to view only the 
+games, tv shows, and movies that they personally have added to their profile. They will also be allowed 
+remove these items from their profile (which will not delete the items from the database collections)
+3. **Search functionality -** In future releases, the user will be able to search by keywords 
+to find items that they can add to their profile for tracking. 
+4. **News Feed -** The user will be able to click on a "news feed" that will show them updates
+on the interests that they follow, along with suggestions for similar content they may wish to add. 
+5. **Game Trophy Tracking -** Users will be able to see the trophies available in games (where
+applicable) and mark them as "unlocked" or "locked" to track their progress with these. 
+6. **Current Quest Banner -** When a user clicks into a specific game, a banner at the top 
+will show them the "current" quest that they should be working on. In this instance, only 
+one quest can be marked as "current" and by marking a quest as "current" a popup will advise
+the customer that by doing this it will mark all other quests in this game as not "current"
+7. **Social Profiles -** In future releases, the user will be able to share their profile 
+with friends and connect with other users to see what they follow and how they are progressing
+with different interests. 
+8. **Expand Interests -** In future releases, the user will be able to track other interests
+on their profile such as "music" (for artists and concerts etc.) and "sports". 
+9. **Login Checks -** In version 2, when a user is being created, it will prompt the user 
+if the entered username or email address already exists on the database and request a different
+entry. 
 ## Technologies Used
 
 ## Testing
