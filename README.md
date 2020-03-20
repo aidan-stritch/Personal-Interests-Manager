@@ -66,6 +66,14 @@ are correct in the database.
 ### Wireframes
 #### Desktop View
 ![desktop view index.html](static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
+![desktop view index.html](/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
+![desktop view index.html](Personal-Interests-Manager/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
+![desktop view index.html](workspace/Personal-Interests-Manager/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
+![desktop view index.html](/workspace/Personal-Interests-Manager/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
+
+
+
+
 #### Mobile View
 
 ### Entity Relationship Diagram (ERD)
@@ -89,6 +97,7 @@ current quest
 connect profile with other users 
 have a "news feed" showing new updates on movies, episodes etc.
 expand to other interests Music etc. 
+login check to see if username exists
 ## Technologies Used
 
 ## Testing
