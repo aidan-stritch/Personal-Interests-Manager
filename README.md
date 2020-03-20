@@ -149,6 +149,7 @@ are correct in the database.
 ![mobile view index.html](static/wireframes/Edit_Episode.html-Mobile.png "edit_episode.html page for mobile view")
 
 ### Entity Relationship Diagram (ERD)
+![Entity Relationship Diagram](static/erd's/ERD.png "Entity Relationship Diagram showing relationships on Database")
 
 
 
