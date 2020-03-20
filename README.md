@@ -65,7 +65,7 @@ are correct in the database.
 
 ### Wireframes
 #### Desktop View
-![desktop view index.html](static/wireframes/index.html-desktop.png "index.html page for desktop view")
+![desktop view index.html](static/wireframes/Index.html-Desktop.png "index.html page for desktop view")
 #### Mobile View
 
 ### Entity Relationship Diagram (ERD)
