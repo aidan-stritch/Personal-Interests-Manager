@@ -65,11 +65,7 @@ are correct in the database.
 
 ### Wireframes
 #### Desktop View
-![desktop view index.html](static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
-![desktop view index.html](/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
-![desktop view index.html](Personal-Interests-Manager/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
-![desktop view index.html](workspace/Personal-Interests-Manager/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
-![desktop view index.html](/workspace/Personal-Interests-Manager/static/wireframes/Index.html - Desktop.png "index.html page for desktop view")
+![desktop view index.html](static/wireframes/Index.html-Desktop.png "index.html page for desktop view")
 
 
 
