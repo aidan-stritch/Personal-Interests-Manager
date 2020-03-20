@@ -63,12 +63,13 @@ who has forgotten their login details.
 - As an admin user, I would like to update the director of The Avengers: Endgame, so that the details 
 are correct in the database.
 
-### Site Maps
+### Wireframes
+#### Desktop View
+![desktop view index.html](static/wireframes/index.html-desktop.png "index.html page for desktop view")
+#### Mobile View
+
 ### Entity Relationship Diagram (ERD)
-This section is also where you would share links to any wireframes, mockups, diagrams etc. 
-that you created as part of the design process. These files should themselves either be 
-included as a pdf file in the project itself (in an separate directory), or just hosted 
-elsewhere online and can be in any format that is viewable inside the browser.
+
 
 
 
