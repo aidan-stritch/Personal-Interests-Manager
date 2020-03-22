@@ -369,6 +369,7 @@ message regarding the required fields is shown.
 - Enter all details into the form correctly and click on the "add quest" button and verify that 
 the item is created and that you are redirected to the my_quests.html page. Also verify that a 
 message is displayed in red informing you that the item has been created successfully. 
+
 #### Edit Quest Page
 - Click the "back" button and verify that you are brought back to the last page that you had 
 been on.
@@ -478,7 +479,25 @@ user is getting the best UX possible, regardless of the screen size they are usi
 align correctly. This screen width is quite small, however, so this is an acceptable bug.
 
 ## Deployment
+This project was deployed to Heroku at the address https://personal-interests-manager.herokuapp.com/ using the following steps
+
+- Create a Heroku account
+- Create a new app 
+- Link the Heroku app with your Github repository
+- Push changes to git using the terminal and verify that the connection to Heroku is working
+- Add environment variables to Heroku settings. 
+
 ## Credits
 ### Content
-### Media
+- Font icons imported from Material.icon
+
 ### Acknowledgements
+- I would like to acknowledge my mentor Anthony Ngene for all of his help and advice with this 
+project
+- I would like to thank my friends and family for their testing help and advice with this
+ project
+ - I would like to also thank the Code Insitute Tutor's for all of their help with some of the 
+ trickier functionality in this project. In particular, Tim and Samantha, who have been a massive
+ help.
+
+
