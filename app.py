@@ -9,20 +9,14 @@ from flask_login import LoginManager, UserMixin, login_user, current_user, logou
 from dotenv import load_dotenv
 
 load_dotenv()
-
-"""Creating an instance of a Flask app and linking it to the MongoDB"""
 app = Flask(__name__)
 
-"""this gets the DB name, URI and secret key from the .env file for the app configuration"""
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
-"""Creates an instance of PyMongo with the app inside """
 mongo = PyMongo(app)
-"""Creates an instance of Bcrypt with the app inside """
 bcrypt = Bcrypt(app)
-"""Creates an instance of LoginManager with the app inside """
 login_manager = LoginManager(app)
 
 """creates a class for user that extends UserMixin so that we can use this 
@@ -34,30 +28,23 @@ class User(UserMixin):
     def get_id(self):
         object_id = self.logged_user.get('_id')
         return str(object_id)
-"""the user loader takes in the user_id and in the returns the User object by passing the logged_User json object to it"""
 @login_manager.user_loader
 def load_user(user_id):
     users = mongo.db.Users
     logged_user = users.find_one({'_id': ObjectId(user_id)})
     return User(logged_user)
 
-"""sets the default app route"""
 @app.route('/')
 
 @app.route('/login')
 def login():
     return render_template('index.html')
 
-"""this route checks the login fields against the Users DB collection and if successful logs in the user 
-and redirects to user profile.. if unsuccessful shows message and returns user to index.html"""
-
 @app.route('/user_login', methods=['POST'])
 def user_login():
     form_pwd = request.form.get('user_password')
     form_username = request.form.get('user_username')
 
-    """this method removes the white spaces to ensure that when a user enters the username or password 
-    and accidentally includes a space it does not affect the login"""
     unhashed_pwd = form_pwd.strip()
     this_user = form_username.strip()
 
@@ -70,7 +57,6 @@ def user_login():
             session['user'] = this_user
             return redirect(url_for('user_profile'))
         else:
-            """We do not want to specify which field was incorrect for security reasons"""
             flash('The login credentials do not match our records, please try again.')
             flash('(please note that username and password are case sensitive)')
 
@@ -79,15 +65,12 @@ def user_login():
         flash('(please note that username and password are case sensitive)')
     return render_template('index.html')
 
-"""this route will allow the user to log out and return them to the login page"""
 @app.route('/logout')
 def logout():
     logout_user()
     return render_template('index.html')
 
-"""these app routes handle the user's pages and functionality"""
 
-"""this app route displays all of the users in the DB Users collection"""
 @app.route('/manage_users')
 def manage_users():
     """this IF statement redirects the user to the login page if they have not already logged in"""
@@ -96,13 +79,11 @@ def manage_users():
     else: 
         flash('Please login to view this page')
         return render_template('index.html')
-"""this app route displays the form for a logged in user to add a new user """
 
 @app.route('/new_user')
 def new_user():
     return render_template('add_user.html')
 
-"""this app route displays the form for a new user to sign up """
 @app.route('/sign_up')
 def sign_up():
     return render_template('sign_up.html')
@@ -134,7 +115,6 @@ def add_user():
 
     return redirect(url_for('user_profile'))
 
-"""these app routes allows the user to edit a specific user"""   
 @app.route('/edit_user/<user_id>')
 def edit_user(user_id):
     this_user = mongo.db.Users.find_one({"_id": ObjectId(user_id)})
@@ -174,16 +154,12 @@ def update_user(user_id):
     flash('User profile successfully updated')
     return redirect(url_for('manage_users'))
 
-"""this app route allows the user to delete a specific user"""
 @app.route('/delete_user/<user_id>')
 def delete_user(user_id):
     mongo.db.Users.remove({"_id": ObjectId(user_id)})
     flash('User successfully deleted')
     return redirect(url_for('manage_users'))
 
-"""this app route allows the user view the profile of the user"""
-"""in future versions of this site, this area will be specific for one user.
-For this version, it will simply be linked to all of the results in the DB"""
 @app.route('/user_profile')
 def user_profile():
     """this IF statement redirects the user to the login page if they have not already logged in"""
@@ -193,22 +169,14 @@ def user_profile():
         flash('Please login to view this page')
         return render_template('index.html')
     
-"""these app routes handle the film pages and functionality"""
-
-"""this app route loads and displays all results in the 
-MongoDB Films collection"""
 @app.route('/view_movies')
 def view_movies():
     return render_template('my_movies.html', Films=mongo.db.Films.find())
 
-"""this app route displays the form for a new film 
-to be added to the Films collection"""
 @app.route('/new_film')
 def new_film():
     return render_template('add_movie.html')
 
-"""this app route adds the new film from the form 
-to the MongoDB Films collection"""
 @app.route('/add_film', methods=['POST'])
 def add_film():
     new_film = mongo.db.Films
@@ -216,7 +184,6 @@ def add_film():
     flash('Successfully added new film')
     return redirect(url_for('view_movies'))
     
-"""these app routes allows the user to edit a specific film"""   
 @app.route('/edit_film/<film_id>')
 def edit_film(film_id):
     this_film = mongo.db.Films.find_one({"_id": ObjectId(film_id)})
@@ -239,29 +206,20 @@ def update_film(film_id):
     flash('Successfully edited film')
     return redirect(url_for('view_movies'))
 
-"""this app route allows the user to delete a specific film"""
 @app.route('/delete_film/<film_id>')
 def delete_film(film_id):
     mongo.db.Films.remove({"_id": ObjectId(film_id)})
     flash('Successfully deleted film')
     return redirect(url_for('view_movies'))
 
-"""these app routes handle the tv show pages and functionality"""
-
-"""this app route loads and displays all results in the 
-MongoDB TV collection"""
 @app.route('/view_tv')
 def view_tv():
     return render_template('my_tv_shows.html', TV=mongo.db.TV.find())
 
-"""this app route displays the form for a new tv show 
-to be added to the TV collection"""
 @app.route('/new_tv_show')
 def new_tv_show():
     return render_template('add_tv_show.html')
 
-"""this app route adds the new tv show from the form 
-to the MongoDB TV collection"""
 @app.route('/add_tv', methods=['POST'])
 def add_tv():
     new_tv = mongo.db.TV
@@ -269,7 +227,6 @@ def add_tv():
     flash('Successfully added new TV Show')
     return redirect(url_for('view_tv'))
 
-"""these app routes allows the user to edit a specific TV show"""   
 @app.route('/edit_tv/<tv_id>')
 def edit_tv(tv_id):
     this_tv = mongo.db.TV.find_one({"_id": ObjectId(tv_id)})
@@ -291,30 +248,21 @@ def update_tv(tv_id):
     flash('Successfully edited TV Show')
     return redirect(url_for('view_tv'))
 
-"""this app route allows the user to delete a specific TV show"""
 @app.route('/delete_tv/<tv_id>')
 def delete_tv(tv_id):
     mongo.db.TV.remove({"_id": ObjectId(tv_id)})
     flash('Successfully deleted TV Show')
     return redirect(url_for('view_tv'))
 
-"""these app routes handle the episodes pages and functionality"""
-
-"""this app route loads and displays all results in the 
-MongoDB Episodes collection"""
 @app.route('/new_episode/<tv_name>')
 def new_episode(tv_name):
     return render_template('add_episode.html', show=tv_name)
 
-"""this app route displays the form for a new episode 
-to be added to the Episodes collection"""
 @app.route('/view_episodes/<tv_name>')
 def view_episodes(tv_name):
     this_show = tv_name
     return render_template('my_episodes.html', Episodes=mongo.db.Episodes.find({"Show": tv_name}), show=this_show)
 
-"""this app route adds the new episode from the form 
-to the MongoDB Episodes collection"""
 @app.route('/add_episode', methods=['POST'])
 def add_episode():
     new_episode = mongo.db.Episodes
@@ -323,7 +271,6 @@ def add_episode():
     flash('Successfully added new episode')
     return redirect(url_for('view_episodes', tv_name=show_name))
 
-"""these app routes allows the user to edit a specific episode"""   
 @app.route('/edit_episode/<episode_id>')
 def edit_episode(episode_id):
     this_episode = mongo.db.Episodes.find_one({"_id": ObjectId(episode_id)})
@@ -347,29 +294,20 @@ def update_episode(episode_id):
     flash('Successfully edited episode')
     return redirect(url_for('view_episodes', tv_name=show_name))
 
-"""this app route allows the user to delete a specific episode"""
 @app.route('/delete_episode/<episode_id>/<tv_name>')
 def delete_episode(episode_id, tv_name):
     mongo.db.Episodes.remove({"_id": ObjectId(episode_id)})
     flash('Successfully deleted episode')
     return redirect(url_for('view_episodes', tv_name=tv_name))
 
-"""these app routes handle the games pages and functionality"""
-
-"""this app route loads and displays all results in the 
-MongoDB Games collection"""
 @app.route('/view_games')
 def view_games():
     return render_template('my_games.html', Games=mongo.db.Games.find())
 
-"""this app route displays the form for a new game 
-to be added to the Games collection"""
 @app.route('/new_game')
 def new_game():
     return render_template('add_game.html')
 
-"""this app route adds the new game from the form 
-to the MongoDB Games collection"""
 @app.route('/add_game', methods=['POST'])
 def add_game():
     new_game = mongo.db.Games
@@ -377,7 +315,6 @@ def add_game():
     flash('Successfully added new game')
     return redirect(url_for('view_games'))
 
-"""these app routes allows the user to edit a specific game"""   
 @app.route('/edit_game/<game_id>')
 def edit_game(game_id):
     this_game = mongo.db.Games.find_one({"_id": ObjectId(game_id)})
@@ -397,30 +334,21 @@ def update_game(game_id):
     flash('Successfully edited game')
     return redirect(url_for('view_games'))
 
-"""this app route allows the user to delete a specific game"""
 @app.route('/delete_game/<game_id>')
 def delete_game(game_id):
     mongo.db.Games.remove({"_id": ObjectId(game_id)})
     flash('Successfully deleted game')
     return redirect(url_for('view_games'))
 
-"""these app routes handle the quests pages and functionality"""
-
-"""this app route loads and displays all results in the 
-MongoDB Quests collection"""
 @app.route('/view_quests/<game_name>')
 def view_quests(game_name):
     this_game = game_name
     return render_template('my_quests.html', Quests=mongo.db.Quests.find({"Game": game_name}), game=this_game)
 
-"""this app route displays the form for a new quest 
-to be added to the Quests collection"""
 @app.route('/new_quest/<game_name>')
 def new_quest(game_name):
     return render_template('add_quest.html', game=game_name)
 
-"""this app route adds the new quest from the form 
-to the MongoDB Quests collection"""
 @app.route('/add_quest', methods=['POST'])
 def add_quest():
     new_quest = mongo.db.Quests
@@ -431,7 +359,6 @@ def add_quest():
     flash('Successfully added new quest')
     return redirect(url_for('view_quests', game_name=game_name))
 
-"""these app routes allows the user to edit a specific quest"""   
 @app.route('/edit_quest/<quest_id>')
 def edit_quest(quest_id):
     this_quest = mongo.db.Quests.find_one({"_id": ObjectId(quest_id)})
@@ -453,7 +380,6 @@ def update_quest(quest_id):
     flash('Successfully edited quest')
     return redirect(url_for('view_quests', game_name=game_name))
 
-"""this app route allows the user to delete a specific quest"""
 @app.route('/delete_quest/<quest_id>/<game_name>')
 def delete_quest(quest_id, game_name):
     mongo.db.Quests.remove({"_id": ObjectId(quest_id)})
