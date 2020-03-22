@@ -26,7 +26,12 @@ display component to showcase the user information -->
         <div class="collapsible-header collection">
             <div class="accordian-title collection-item">
                 <i class="material-icons">keyboard_arrow_down</i>
-                <strong>{{tv.Name}} </strong> <span class ="sm-hidden">- Pilot Date: {{tv.Pilot_Date}}</span>
+                <strong>{{tv.Name}} </strong> 
+                {% if tv.Pilot_Date == "" %}
+                    <span class ="sm-hidden"></span>
+                {% else %}
+                    <span class ="sm-hidden">- Pilot Date: {{tv.Pilot_Date}}</span>
+                {% endif%}
                 <span class="secondary-content">
                     <a href="{{url_for('view_episodes', tv_name=tv.Name)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">dvr</i>Episodes</a>
                     <a href="{{url_for('delete_tv', tv_id=tv._id)}}"class="waves-effect waves-light btn accordian-btn btn-mob"><i class="material-icons right">delete</i>Delete</a>

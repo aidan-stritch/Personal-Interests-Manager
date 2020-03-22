@@ -86,6 +86,3 @@
 ![mobile view index.html](static/wireframes/Add_Episode.html-Mobile.png "add_episode.html page for mobile view")
 ### Edit Episode Page
 ![mobile view index.html](static/wireframes/Edit_Episode.html-Mobile.png "edit_episode.html page for mobile view")
-
-
-

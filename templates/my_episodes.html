@@ -42,7 +42,10 @@ display component to showcase the user information -->
             <li><strong>Show: </strong> {{episode.Show}}</li>
             <li><strong>Season: </strong> {{episode.Season_Number}}</li>
             <li><strong>Episode Number: </strong> {{episode.Episode_Number}}</li>
-            <li><strong>Air Date: </strong> {{episode.Air_Date}}</li>
+            {% if episode.Air_Date == "" %}
+                {% else %}
+                    <li><strong>Air Date: </strong> {{episode.Air_Date}}</li>
+                {% endif%}
             <li><strong>Rating: </strong> {{episode.Rating}}%</li>
             <li><strong>Descripion: </strong> {{episode.Description}}</li>
 

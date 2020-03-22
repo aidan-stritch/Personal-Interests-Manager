@@ -144,9 +144,340 @@ secure.
 - flask_login - This was used to handle the users logging in and out of the site securely
 - Heroku - This was chosen to host the website app for deployment.
 ## Testing
+### Individual Page Testing
+#### Index Page
+- Click on "Profile" link in nav bar and verify that an error message is displayed prompting
+the user that they have to log in to view the page
+- Click on "Manage Users" link in nav bar and verify that an error message is displayed prompting
+the user that they have to log in to view the page
+- Enter a username and click the "login" button leaving the password field blank and verify that
+a prompt appears that the password field must not be blank.
+- Enter a password and click the "login" button leaving the username field blank and verify that
+a prompt appears that the username field must not be blank. 
+- Click on the "Sign Up" button below the login form and verify that it brings you to the 
+sign-up page.
+- Click on the "Sign Up" link in the nav bar and verify that it brings you to the sign-up page.
+- Once you have created a user, logout using the logout button in the nav bar and verify that 
+it brings you to the index.html page.
+- Now that you have a user created, enter the correct username into the "username" field and an
+incorrect password into the "password" field and click login. Verify that a message appears informing
+the user that the login credentials are incorrect. 
+- Enter an incorrect username into the "username" field and the correct password into the 
+"password" field and click login. Verify that a message appears informing the user that the 
+login credentials are incorrect. 
+- Enter the correct username and password into the corresponding fields, click login and verify
+that it logs in correctly and redirects you to the user profile page. 
+
+#### Sign-Up Page
+- Click on "Profile" link in nav bar and verify that you are redirected to the index.html page
+and that an error message is displayed prompting the user that they have to log in to view 
+the page.
+- Click on "Manage Users" link in nav bar and verify that you are redirected to the index.html page
+and that an error message is displayed prompting the user that they have to log in to view 
+the page.
+- Click the "cancel" button and verify that you are brought back to the index.html page.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "first name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "last name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "address line 1" field blank and submit and verify that an 
+error message regarding the required fields is shown.
+- Fill in all fields, but have "city" field blank and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have "postcode" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "email" field blank and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have no "@" symbol in the "email" field and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have "username" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "password" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "Submit" button and verify that 
+the user is created and that you are redirected to the user profile page. Also verify that a 
+message is displayed in red informing you that the user has been created successfully. 
+
+#### Manage Users Page
+- Click on the "New User" button and verify that you are brought to the correct page. 
+- Click on the "Edit" button and verify that you are brought to the correct page. 
+- Click on the "Back" button and verify that you are brought to previous page. 
+- Click on the "Delete" button and verify that the item is deleted and a message is displayed
+informing you that the user has been successfully deleted. 
+- Click on the dropdown arrow image and verify that the users information is displayed correctly. 
+
+#### Add User Page
+- Click on "Profile" link in nav bar and verify that you are brought to the user_profile.html page.
+- Click on "Manage Users" link in nav bar and verify that you are brought to the manage_users.html page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "first name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "last name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "address line 1" field blank and submit and verify that an 
+error message regarding the required fields is shown.
+- Fill in all fields, but have "city" field blank and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have "postcode" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "email" field blank and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have no "@" symbol in the "email" field and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have "username" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "password" field blank and submit and verify that an error 
+message regarding the required fields is shown
+- Enter all details into the form correctly and click on the "add user" button and verify that 
+the user is created and that you are redirected to the user profile page. Also verify that a 
+message is displayed in red informing you that the user has been created successfully. 
+
+#### Edit User Page
+- Click the "Edit" button next to a user in the Manage_Users.html page and verify that you are 
+brought to this page and that the fields are all filled in with the users available details 
+(with the exeption of the password field which should be blank for security reasons).
+- Without making any changes, click on the "Save Changes" button and verify that you are brought 
+back to the Manage_Users.html page
+- Change any field (apart from the password field), click on the "Save Changes" button and verify 
+that the information has been changed when you click on the dropdown next to the users name on 
+manage_users.html
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "first name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "last name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "address line 1" field blank and submit and verify that an 
+error message regarding the required fields is shown.
+- Fill in all fields, but have "city" field blank and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have "postcode" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "email" field blank and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have no "@" symbol in the "email" field and submit and verify that an error message 
+regarding the required fields is shown.
+- Fill in all fields, but have "username" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+
+#### User Profile Page
+- Verify that the username used to login is displayed next to the "Welcome" heading. 
+- Click on the "View My Games" button and verify that you are brought to the correct page. 
+- Click on the "View My TV Shows" button and verify that you are brought to the correct page. 
+- Click on the "View My Movies" button and verify that you are brought to the correct page.
+- Click on the "Log Out" button in the nav bar and verify that you are logged out and can no longer
+click on the "Manage Users" button or "Profile" button without logging in.  
+
+#### My Movies Page
+- Click on the "New Movie" button and verify that you are brought to the correct page. 
+- Click on the "Edit" button and verify that you are brought to the correct page. 
+- Click on the "User Profile" button and verify that you are brought to User Profile page. 
+- Click on the "Delete" button and verify that the item is deleted and a message is displayed
+informing you that the item has been successfully deleted. 
+- Click on the dropdown arrow image and verify that the items information is displayed correctly. 
+
+#### Add Movie Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "film name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "add movie" button and verify that 
+the item is created and that you are redirected to the my_movies.html page. Also verify that a 
+message is displayed in red informing you that the item has been created successfully. 
+
+#### Edit Movie Page
+- Click the "Edit" button next to a movie in the My_Movies.html page and verify that you are 
+brought to this page and that the fields are all filled in with the available details 
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "film name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "save changes" button and verify that 
+you are redirected to the my_movies.html page. Also verify that a message is displayed in red 
+informing you that the items changes have been successfully added. 
+- Delete the content from the Release Date field by clicking on the field and selecting "clear" 
+on the calendar popup. Click "save changes" and verify that the "release date" span is no 
+longer visible next to the items name on my_movies.html.
+- Delete the content from the Image URL field. Click "save changes" and click on the item in 
+my_movies.html to view its information. Verify that there is now a message prompting the user to add a link for 
+an image. 
+
+#### My Games Page
+- Click on the "New Game" button and verify that you are brought to the correct page. 
+- Click on the "Edit" button and verify that you are brought to the correct page. 
+- Click on the "User Profile" button and verify that you are brought to correct page. 
+- Click on the "Quests" button and verify that you are brought to correct page. 
+- Click on the "Delete" button and verify that the item is deleted and a message is displayed
+informing you that the item has been successfully deleted. 
+- Click on the dropdown arrow image and verify that the items information is displayed correctly. 
+
+#### Add Game Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "game name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "console" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "add game" button and verify that 
+the item is created and that you are redirected to the my_games.html page. Also verify that a 
+message is displayed in red informing you that the item has been created successfully. 
+
+#### Edit Game Page
+- Click the "Edit" button next to a game in the My_Games.html page and verify that you are 
+brought to this page and that the fields are all filled in with the available details 
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "game name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "console" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "save changes" button and verify that 
+you are redirected to the my_games.html page. Also verify that a message is displayed in red 
+informing you that the items changes have been successfully added. 
+- Delete the content from the Image URL field. Click "save changes" and click on the item in 
+my_games.html to view its information. Verify that there is now a message prompting the user to add a link for 
+an image. 
+
+#### My Quests Page
+- Click on the "Add Quest" button and verify that you are brought to the correct page. 
+- Click on the "Edit" button and verify that you are brought to the correct page. 
+- Click on the "My Games" button and verify that you are brought to correct page. 
+- Click on the "Delete" button and verify that the item is deleted and a message is displayed
+informing you that the item has been successfully deleted. 
+- Click on the dropdown arrow image and verify that the items information is displayed correctly. 
+
+#### Add Quest Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "quest name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "add quest" button and verify that 
+the item is created and that you are redirected to the my_quests.html page. Also verify that a 
+message is displayed in red informing you that the item has been created successfully. 
+#### Edit Quest Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "quest name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "save changes" button and verify that 
+the item is edited and that you are redirected to the my_quests.html page. Also verify that a 
+message is displayed in red informing you that the item has been edited successfully. 
+
+#### My TV Shows Page
+- Click on the "New TV Show" button and verify that you are brought to the correct page. 
+- Click on the "Edit" button and verify that you are brought to the correct page. 
+- Click on the "User Profile" button and verify that you are brought to correct page. 
+- Click on the "Episodes" button and verify that you are brought to correct page. 
+- Click on the "Delete" button and verify that the item is deleted and a message is displayed
+informing you that the item has been successfully deleted. 
+- Click on the dropdown arrow image and verify that the items information is displayed correctly. 
+
+#### Add TV Show Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "TV show name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "add tv show" button and verify that 
+the item is created and that you are redirected to the my_tv_shows.html page. Also verify that a 
+message is displayed in red informing you that the item has been created successfully. 
+
+#### Edit TV Show Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "TV show name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "save changes" button and verify 
+that the item is edited and that you are redirected to the my_tv_shows.html page. Also verify 
+that a message is displayed in red informing you that the item has been edited successfully. 
+- Delete the content from the Pilot Date field by clicking on the field and selecting "clear" 
+on the calendar popup. Click "save changes" and verify that the "pilot date" span is no 
+longer visible next to the items name on my_tv_shows.html.
+- Delete the content from the Image URL field. Click "save changes" and click on the item in 
+my_tv_shows.html to view its information. Verify that there is now a message prompting the user to add a link for 
+an image. 
+
+#### My Episodes Page
+- Click on the "Add Episode" button and verify that you are brought to the correct page. 
+- Click on the "Edit" button and verify that you are brought to the correct page. 
+- Click on the "My TV Shows" button and verify that you are brought to correct page. 
+- Click on the "Delete" button and verify that the item is deleted and a message is displayed
+informing you that the item has been successfully deleted. 
+- Click on the dropdown arrow image and verify that the items information is displayed correctly. 
+
+#### Add Episode Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "episode name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "episode number" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "season number" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "add episode" button and verify that 
+the item is created and that you are redirected to the my_episodes.html page. Also verify that a 
+message is displayed in red informing you that the item has been created successfully. 
+
+#### Edit Episode Page
+- Click the "back" button and verify that you are brought back to the last page that you had 
+been on.
+- Try to submit with all fields blank and verify that an error message regarding the required 
+fields is shown.
+- Fill in all fields, but have "episode name" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "episode number" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Fill in all fields, but have "season number" field blank and submit and verify that an error 
+message regarding the required fields is shown.
+- Enter all details into the form correctly and click on the "save changes" button and verify that 
+the item is edited and that you are redirected to the my_episodes.html page. Also verify that a 
+message is displayed in red informing you that the item has been edited successfully.
+- Delete the content from the Air Date field by clicking on the field and selecting "clear" 
+on the calendar popup. Click "save changes" and verify that the "air date" list item is no 
+longer visible in the drop down section for the item on my_episodes.html.
+
+### Responsiveness
+This website has been designed to scale correctly to different screen sizes with no issues on 
+layout.
+
+In order to ensure that the navigation bar was as responsive as possible, on Desktop the menu 
+shows accross the top of the page while on mobile screens, the menu reduced to a burger icon 
+with only the title visible. When the burger icon is clicked, a side menu appears with the links
+to other pages from the nav bar. The first link on the nav bar is for the user to sign-up or log-out
+depending on whether they have logged in or not. The second link brings them to their profile
+(which in this site is essentially the home page), and the third button brings the user to the 
+manage users page as this is quite an important page for admins to use. 
+
+Each page was altered slightly between mobile and desktop for its layout to ensure that the 
+user is getting the best UX possible, regardless of the screen size they are using.
+
+### Bugs Found
+- If the my_episodes or my_quests pages are viewed below 345 pixel width the buttons do not 
+align correctly. This screen width is quite small, however, so this is an acceptable bug.
 
 ## Deployment
-
 ## Credits
 ### Content
 ### Media
