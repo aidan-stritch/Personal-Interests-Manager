@@ -64,90 +64,9 @@ who has forgotten their login details.
 are correct in the database.
 
 ### Wireframes
-#### Desktop View
-![desktop view index.html](static/wireframes/Index.html-Desktop.png "index.html page for desktop view")
+As there are many pages to this project, I have included the wireframes in a separate document. 
 
-![desktop view index.html](static/wireframes/Sign_Up.html-Desktop.png "sign_up.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Manage_Users.html-Desktop.png "manage_users.html page for desktop view")
-
-![desktop view index.html](static/wireframes/edit_user.html-Desktop.png "edit_user.html page for desktop view")
-
-![desktop view index.html](static/wireframes/User_Profile.html-Desktop.png "user_profile.html page for desktop view")
-
-![desktop view index.html](static/wireframes/My_Movies.html-Desktop.png "my_movies.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Add_Movie.html-Desktop.png "add_movie.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Edit_Movie.html-Desktop.png "edit_movie.html page for desktop view")
-
-![desktop view index.html](static/wireframes/My_Games.html-Desktop.png "my_games.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Add_Game.html-Desktop.png "add_game.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Edit_Game.html-Desktop.png "edit_game.html page for desktop view")
-
-![desktop view index.html](static/wireframes/My_Quests.html-Desktop.png "my_quests.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Add_Quest.html-Desktop.png "add_quest.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Edit_Quest.html-Desktop.png "edit_quest.html page for desktop view")
-
-![desktop view index.html](static/wireframes/My_TV_Shows.html-Desktop.png "my_tv_shows.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Add_TV_Show.html-Desktop.png "add_tv_show.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Edit_TV_Show.html-Desktop.png "edit_tv_show.html page for desktop view")
-
-![desktop view index.html](static/wireframes/My_Episodes.html-Desktop.png "my_episodes.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Add_Episode.html-Desktop.png "add_episode.html page for desktop view")
-
-![desktop view index.html](static/wireframes/Edit_Episode.html-Desktop.png "edit_episode.html page for desktop view")
-
-![desktop view index.html](static/wireframes/User_Profile.html-Desktop.png "user_profile.html page for desktop view")
-
-#### Mobile View
-![mobile view index.html](static/wireframes/Index.html-Mobile.png "index.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Sign_Up.html-Mobile.png "sign_up.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Manage_Users.html-Mobile.png "manage_users.html page for mobile view")
-
-![mobile view index.html](static/wireframes/edit_user.html-Mobile.png "edit_user.html page for mobile view")
-
-![mobile view index.html](static/wireframes/User_Profile.html-Mobile.png "user_profile.html page for mobile view")
-
-![mobile view index.html](static/wireframes/My_Movies.html-Mobile.png "my_movies.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Add_Movie.html-Mobile.png "add_movie.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Edit_Movie.html-Mobile.png "edit_movie.html page for mobile view")
-
-![mobile view index.html](static/wireframes/My_Games.html-Mobile.png "my_games.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Add_Game.html-Mobile.png "add_game.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Edit_Game.html-Mobile.png "edit_game.html page for mobile view")
-
-![mobile view index.html](static/wireframes/My_Quests.html-Mobile.png "my_quests.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Add_Quest.html-Mobile.png "add_quest.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Edit_Quest.html-Mobile.png "edit_quest.html page for mobile view")
-
-![mobile view index.html](static/wireframes/My_TV_Shows.html-Mobile.png "my_tv_shows.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Add_TV_Show.html-Mobile.png "add_tv_show.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Edit_TV_Show.html-Mobile.png "edit_tv_show.html page for mobile view")
-
-![mobile view index.html](static/wireframes/My_Episodes.html-Mobile.png "my_episodes.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Add_Episode.html-Mobile.png "add_episode.html page for mobile view")
-
-![mobile view index.html](static/wireframes/Edit_Episode.html-Mobile.png "edit_episode.html page for mobile view")
-
+Please see the wireframes.md file for the entire collection of wireframes.
 ### Entity Relationship Diagram (ERD)
 ![Entity Relationship Diagram](static/erd's/ERD.png "Entity Relationship Diagram showing relationships on Database")
 
@@ -208,7 +127,22 @@ on their profile such as "music" (for artists and concerts etc.) and "sports".
 if the entered username or email address already exists on the database and request a different
 entry. 
 ## Technologies Used
-
+- HTML - This site uses HTML to instruct the browser how to interprit the code 
+correctly and arrange the layout.
+- CSS - This site uses CSS to aid in the style, and overall theme of the website
+- Bootstrap - This site uses Bootstrap elements to help design the framework of the site
+- Materialize - This site uses Materialize elements to help design forms, buttons and 
+nav bar elements
+- Balsamiq - This was used to create the wireframes in the design phase
+- JQuery - The project uses JQuery to simplify DOM manipulation
+- Bcrypt - This project uses Bcrypt to encrypt the passwords and ensure that they are 
+secure.
+- Flask - The site uses Flask functionality in order to manage the route redirections 
+& page rendering, the flash messages and also the user session
+- PyMongo - This was used to interact with the MongoDB database
+- MongoDB - This was used to manage the collections and the database for the site
+- flask_login - This was used to handle the users logging in and out of the site securely
+- Heroku - This was chosen to host the website app for deployment.
 ## Testing
 
 ## Deployment
