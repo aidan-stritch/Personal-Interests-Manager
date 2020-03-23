@@ -66,7 +66,9 @@ are correct in the database.
 ### Wireframes
 As there are many pages to this project, I have included the wireframes in a separate document. 
 
-Please see the wireframes.md file for the entire collection of wireframes.
+Please see the wireframes.md file for the entire collection of wireframes:
+https://github.com/aidan-stritch/Personal-Interests-Manager/blob/master/wireframes.md
+
 ### Entity Relationship Diagram (ERD)
 ![Entity Relationship Diagram](static/erd's/ERD.png "Entity Relationship Diagram showing relationships on Database")
 
