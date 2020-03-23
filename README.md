@@ -133,10 +133,12 @@ entry.
 correctly and arrange the layout.
 - CSS - This site uses CSS to aid in the style, and overall theme of the website
 - Bootstrap - This site uses Bootstrap elements to help design the framework of the site
+- Python - This language was chosen to code the majority of the functionality of the site
+- Javascript - this was used to program some of the features on the site, such as the calendar
 - Materialize - This site uses Materialize elements to help design forms, buttons and 
 nav bar elements
 - Balsamiq - This was used to create the wireframes in the design phase
-- JQuery - The project uses JQuery to simplify DOM manipulation
+- JQuery - The project uses JQuery to simplify DOM manipulation and aid in visual elements
 - Bcrypt - This project uses Bcrypt to encrypt the passwords and ensure that they are 
 secure.
 - Flask - The site uses Flask functionality in order to manage the route redirections 
@@ -146,6 +148,8 @@ secure.
 - flask_login - This was used to handle the users logging in and out of the site securely
 - Heroku - This was chosen to host the website app for deployment.
 ## Testing
+The following manual testing was done to ensure that the website had no bugs or layout issues 
+and that all links and features worked correctly. 
 ### Individual Page Testing
 #### Index Page
 - Click on "Profile" link in nav bar and verify that an error message is displayed prompting
@@ -462,8 +466,10 @@ on the calendar popup. Click "save changes" and verify that the "air date" list 
 longer visible in the drop down section for the item on my_episodes.html.
 
 ### Responsiveness
-This website has been designed to scale correctly to different screen sizes with no issues on 
-layout.
+This website has been designed to scale correctly to different screen sizes with no issues 
+on layout. In order to ensure that the view was pleasant to the user, certain divs and items 
+had to be arranged differently or hidden/shown depending on screen size. This was handled using 
+CSS media queries. 
 
 In order to ensure that the navigation bar was as responsive as possible, on Desktop the menu 
 shows accross the top of the page while on mobile screens, the menu reduced to a burger icon 
@@ -482,6 +488,19 @@ align correctly. This screen width is quite small, however, so this is an accept
 
 ## Deployment
 This project was deployed to Heroku at the address https://personal-interests-manager.herokuapp.com/ using the following steps
+
+### Github:
+- create a new project on GitHub
+- copy the code for pushing to a GitHub repository and paste in the terminal of your project on 
+Gitpod (git remote add origin 'link')
+
+#### To commit the code on Gitpod to GitHub:
+- in the terminal, type "git add ." to add all new changes to the code to staging area
+- next, type "git status" to see which files are ready to be commited
+- commit these by typing "git commit -m" and adding a detailed description of the commit in ""
+- next, push the code commit to github by typing "git push -u origin master"
+
+### Heroku:
 
 - Create a Heroku account
 - Create a new app 
